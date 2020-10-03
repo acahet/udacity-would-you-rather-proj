@@ -1,11 +1,12 @@
-import selectUser from './SelectUser'
-import { loadingBarReducer } from 'react-redux-loading'
-import { combineReducers} from 'redux'
+import { loadingBarReducer } from 'react-redux-loading';
+import { combineReducers } from 'redux';
+import authedUser from './authedUser';
+import users from './users';
 
 const allReducers = combineReducers({
-    currentUser: selectUser,
-    loading: loadingBarReducer,
-
-})
+	authedUser,
+	users,
+	loading: loadingBarReducer,
+});
 
 export default allReducers;
