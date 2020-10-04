@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setAuthedUser } from '../actions/authedUser';
+import { setAuthedUser } from '../../actions/authedUser';
 class Login extends Component {
 	state = {
 		isLoggedWith: '',
