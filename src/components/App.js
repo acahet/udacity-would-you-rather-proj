@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
 
 import '../App.css';
-import Login from './Login';
+import Home from './pages/Home';
+import Login from './pages/Login';
 
 class App extends Component {
 	componentDidMount() {
@@ -16,10 +17,9 @@ class App extends Component {
     
 		return (
 			<div className="App">
-        { this.props.authedUser === null || '' ? <Login /> : "<Home />" }
+        { this.props.authedUser === null || this.props.authedUser === '' ? <Login /> : <Home /> }
 				
 				<hr />
-        
 				
 			</div>
 		);
