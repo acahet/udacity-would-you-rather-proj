@@ -21,9 +21,9 @@ class Login extends Component {
 		if (isLoggedWith !== undefined || isLoggedWith !== null) {
 			this.props.dispatch(setAuthedUser(isLoggedWith));
 
-			this.setState(() => ({
-				isLoggedWith: '',
-			}));
+			// this.setState(() => ({
+			// 	isLoggedWith: '',
+			// }));
 		}
 	};
 
