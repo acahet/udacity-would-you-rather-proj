@@ -19,7 +19,7 @@ class QuestionContainer extends Component {
 		// saveQuestionAnswer();
 		this.setState(() => ({
 			unanswered: !this.state.unanswered,
-			answered: !this.state.answered
+			answered: !this.state.answered,
 		}));
 	};
 	render() {
@@ -37,14 +37,19 @@ class QuestionContainer extends Component {
 		return (
 			<div>
 				<h1>Question Container</h1>
-				<button type="button" onClick={this.handleClick}> Unanswered </button>
-				<button type="button" onClick={this.handleClick}> Answered </button>
-				{ this.state.unanswered === true ?
-					 <Question getQuestion={notAnswered} onChange={(e)=> this.onChange(e)}/> : <Question getQuestion={answered}/>
-				}
-			
-			<hr/>
-			{/* <Question getQuestion={answered}/> */}
+				<button type="button" onClick={this.handleClick}>
+					{' '}
+					Unanswered{' '}
+				</button>
+				<button type="button" onClick={this.handleClick}>
+					{' '}
+					Answered{' '}
+				</button>
+				{this.state.unanswered === true ? (
+					<Question getQuestion={notAnswered} onChange={(e) => this.onChange(e)} />
+				) : (
+					<Question getQuestion={answered} />
+				)}
 			</div>
 		);
 	}
@@ -69,6 +74,7 @@ function mapStateToProps({ authedUser, questions, users }) {
 			.map((avatar) => {
 				return users[avatar].avatarURL;
 			}),
+			
 	}));
 	return {
 		question,
