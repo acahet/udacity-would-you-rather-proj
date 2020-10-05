@@ -20,10 +20,6 @@ class Login extends Component {
 
 		if (isLoggedWith !== undefined || isLoggedWith !== null) {
 			this.props.dispatch(setAuthedUser(isLoggedWith));
-
-			// this.setState(() => ({
-			// 	isLoggedWith: '',
-			// }));
 		}
 	};
 
@@ -45,7 +41,6 @@ class Login extends Component {
 							);
 						})}
 					</select>
-					{console.log('state for loginId is: ', this.state.isLoggedWith)}
 					<button
 						type="submit"
 						disabled={this.state.isLoggedWith === '' || this.state.isLoggedWith === 'select' ? true : false}
