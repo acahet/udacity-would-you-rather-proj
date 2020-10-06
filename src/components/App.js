@@ -18,7 +18,7 @@ class App extends Component {
 		return (
 			<div className="App">
         { this.props.authedUser === null || this.props.authedUser === '' ? <Login /> : <Home /> }
-				
+				{/* <Home /> */}
 				<hr />
 				
 			</div>
