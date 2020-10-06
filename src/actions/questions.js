@@ -1,6 +1,9 @@
-import { saveQuestionAnswer } from '../utils/api'
+import { hideLoading, showLoading } from 'react-redux-loading';
+import { saveQuestionAnswer } from '../utils/api';
+import { setAuthedUserAnswer } from './authedUser';
+
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
-export const TOGGLE_VOTE = 'TOGGLE_VOTE';
+export const RECEIVE_ANSWER = 'RECEIVE_ANSWER';
 
 export function receiveQuestions(questions) {
 	return {
@@ -9,23 +12,24 @@ export function receiveQuestions(questions) {
 	};
 }
 
-function toggleVote({ id, authedUser, questions, answer }) {
+function receiveAnswer(info) {
 	return {
-		type: TOGGLE_VOTE,
-		id,
-		authedUser,
-		answer,
-		questions,
+		type: RECEIVE_ANSWER,
+		info,
 	};
 }
 
-export function handleToggleVote(info) {
+export function handleReceiveAnswer(info) {
 	return (dispatch) => {
-		dispatch(toggleVote(info))
-		return saveQuestionAnswer(info).catch(e=>{
-			console.warn(' error in handleToggleVote: ', e)
-			dispatch(toggleVote(info))
-			alert('error while saving vote')
+		dispatch(showLoading())
+		return saveQuestionAnswer(info).then(() =>{
+			dispatch(setAuthedUserAnswer(info))
+			dispatch(receiveAnswer(info))
+		}).then(() => {
+			dispatch(hideLoading())
+		}).catch((error) => {
+			console.warn('Error in handleReceiveAnswer! ', error)
+			alert('Error in handleReceiveAnswer! Check console for more info')
 		})
-	}
+	};
 }
