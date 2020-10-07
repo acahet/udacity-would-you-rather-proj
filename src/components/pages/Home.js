@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setAuthedUser } from '../../actions/authedUser';
-import QuestionContainer from '../Questions/QuestionContainer';
+import { removeAuthedUser, setAuthedUser } from '../../actions/authedUser';
+import Login from './Login';
 class Home extends Component {
 	render() {
 		const { dispatch } = this.props;
+		
 		return (
 			<div>
 				<nav>
-					<button onClick={() => dispatch(setAuthedUser(null))}>Logout</button>
+					<button onClick={() => 
+						{dispatch(setAuthedUser(removeAuthedUser))
+						return <Login/>
+						}
+						}>Logout</button>
 				</nav>
-
-				<QuestionContainer />
+				
 			</div>
 		);
 	}
 }
 
-export default connect((state) => ({ authedUsers: state }))(Home);
+export default connect()(Home);

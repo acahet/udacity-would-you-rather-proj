@@ -8,9 +8,12 @@ export function receiveUsers(users) {
 	};
 }
 
-export function receiveUserAnswer(info) {
+export function receiveUserAnswer(users, authUser, qid, answers) {
 	return {
 		type: RECEIVE_USER_ANSWER,
-		info,
+		users,
+		authUser,
+		qid,
+		answers,
 	};
 }

@@ -8,19 +8,15 @@ import Login from './pages/Login';
 
 class App extends Component {
 	componentDidMount() {
-    
-    this.props.dispatch(handleInitialData())
-    
+		this.props.dispatch(handleInitialData());
 	}
 
 	render() {
-    
 		return (
 			<div className="App">
-        { this.props.authedUser === null || this.props.authedUser === '' ? <Login /> : <Home /> }
-				{/* <Home /> */}
+				{this.props.authedUser === null || this.props.authedUser === '' ? <Login /> : <Home />}
+
 				<hr />
-				
 			</div>
 		);
 	}

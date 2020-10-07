@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setAuthedUser } from '../../actions/authedUser';
+import Select, { SelectOption } from '@workday/canvas-kit-react-select';
+import FormField from '@workday/canvas-kit-react-form-field';
+import Card from '@workday/canvas-kit-react-card';
+import { Button } from '@workday/canvas-kit-react-button';
 class Login extends Component {
 	state = {
 		isLoggedWith: '',
@@ -25,30 +29,26 @@ class Login extends Component {
 
 	render() {
 		return (
-			<div>
-				<div>Login</div>
-				<form onSubmit={this.handleSubmit}>
-					<select value={this.state.isLoggedWith} onChange={(e) => this.handleChange(e)}>
-						<option value="select" key="select">
-							Select User
-						</option>
+				<Card heading="Login" style={{ margin:'25px',padding: '10px'}}>
+					<FormField onSubmit={this.handleSubmit}>
+					<Select name='login' value={this.state.isLoggedWith} onChange={(e) => this.handleChange(e)}>
+						<SelectOption value="select" label="Select User" />
 						{this.props.users.map((user) => {
 							console.log('is is: ', user.id);
 							return (
-								<option value={user.id} key={user.id}>
-									{user.name}
-								</option>
+								<SelectOption value={user.id} key={user.id} label={user.name}/>
 							);
 						})}
-					</select>
-					<button
+					</Select>
+					<Button
 						type="submit"
+						style={{left: '5px'}}
 						disabled={this.state.isLoggedWith === '' || this.state.isLoggedWith === 'select' ? true : false}
 					>
 						Login
-					</button>
-				</form>
-			</div>
+					</Button>
+					</FormField>
+				</Card>
 		);
 	}
 }

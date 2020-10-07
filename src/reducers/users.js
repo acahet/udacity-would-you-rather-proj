@@ -1,4 +1,4 @@
-import { RECEIVE_USERS } from '../actions/users';
+import { RECEIVE_USERS, RECEIVE_USER_ANSWER } from '../actions/users';
 
 export default function selectUser(state = {}, action) {
 	switch (action.type) {
@@ -11,3 +11,6 @@ export default function selectUser(state = {}, action) {
 			return state;
 	}
 }
+
+
+
