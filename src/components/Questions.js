@@ -9,4 +9,7 @@ import { connect } from 'react-redux'
         )
     }
 }
-export default connect()(Questions)
+function mapStateToProps({ authedUser }) {
+	return { authedUser };
+}
+export default mapStateToProps()(Questions)
