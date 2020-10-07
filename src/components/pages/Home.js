@@ -1,24 +1,15 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { removeAuthedUser, setAuthedUser } from '../../actions/authedUser';
-import Login from './Login';
-class Home extends Component {
+import { Button } from '@workday/canvas-kit-react-button';
+import { ActionBar } from '@workday/canvas-kit-react-action-bar';
+import NavBar from '../NavBar';
+import Questions from '../Questions';
+export default class Home extends Component {
 	render() {
-		const { dispatch } = this.props;
-		
 		return (
 			<div>
-				<nav>
-					<button onClick={() => 
-						{dispatch(setAuthedUser(removeAuthedUser))
-						return <Login/>
-						}
-						}>Logout</button>
-				</nav>
-				
+				<NavBar />
+                <Questions />
 			</div>
 		);
 	}
 }
-
-export default connect()(Home);

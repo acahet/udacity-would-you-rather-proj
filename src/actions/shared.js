@@ -8,7 +8,7 @@ export function handleInitialData() {
         dispatch(showLoading());
 		return getInitialData().then(({ users, questions }) => {
 			dispatch(receiveUsers(users));
-			// dispatch(setAuthedUser(AUTH_USER))
+			dispatch(setAuthedUser(AUTH_USER))
 			dispatch(hideLoading());
 		});
 	};

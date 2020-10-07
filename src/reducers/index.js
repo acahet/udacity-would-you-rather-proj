@@ -6,6 +6,8 @@ import users from './users';
 const allReducers = combineReducers({
 	authedUser,
 	users,
+	loadingBarReducer,
+	
 });
 
 export default allReducers;
