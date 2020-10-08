@@ -13,7 +13,10 @@ class Header extends Component {
 	render() {
 		return (
 			<>
-				<PageHeader title="Would Rather Game">
+				<PageHeader title="Would You Rather Game">
+					{this.props.loading === true ? null : (
+						<span style={{ left: '50px' }}>Hello {this.props.users[this.props.authedUser]}</span>
+					)}
 					<Button
 						style={{ display: this.props.authedUser !== null ? '' : 'none' }}
 						onClick={this.handleClick}
@@ -25,7 +28,7 @@ class Header extends Component {
 		);
 	}
 }
-function mapStateToProps({ authedUser }) {
-	return { authedUser };
+function mapStateToProps({ users, authedUser }) {
+	return { loading: authedUser === null, users };
 }
 export default connect(mapStateToProps)(Header);

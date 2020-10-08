@@ -8,7 +8,7 @@ import Card from '@workday/canvas-kit-react-card';
 import { Button } from '@workday/canvas-kit-react-button';
 class Login extends Component {
 	state = {
-		isLoggedWith: 'sarahedo',
+		isLoggedWith: '',
 		redirect: false,
 	};
 
@@ -26,7 +26,7 @@ class Login extends Component {
 
 		console.log(localStorage.setItem('user', isLoggedWith));
 		if (isLoggedWith !== undefined || isLoggedWith !== null) {
-			const storage = localStorage.setItem('user', isLoggedWith);
+			// const storage = localStorage.setItem('user', isLoggedWith);
 			this.props.dispatch(setAuthedUser(isLoggedWith));
 			this.setState(() => ({
 				redirect: true,
