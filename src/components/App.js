@@ -39,23 +39,20 @@ class App extends Component {
 					<Header />
 					<Switch>
 						<div className="App">
-						<Route path='/'  exact component={Home} />
+						{/* <Route path='/'  exact component={Home} />
 							<Route path='/new-question'  exact component={NewQuestion} />
-							<Route path='/leaderboard'  exact component={Leaderboard} />
-							{/* <PrivateRoute path='/' authedUser={this.props.authedUser} exact component={Home} />
+							<Route path='/leaderboard'  exact component={Leaderboard} /> */}
+							<PrivateRoute path='/' authedUser={this.props.authedUser} exact component={Home} />
 							<PrivateRoute path='/new-question' authedUser={this.props.authedUser} exact component={NewQuestion} />
-							<PrivateRoute path='/leaderboard' authedUser={this.props.authedUser} exact component={Leaderboard} /> */}
+							<PrivateRoute path='/leaderboard' authedUser={this.props.authedUser} exact component={Leaderboard} />
 							<Route path='/login' exact component={Login} />
-							{/* {
+							 {
 						
 						
-						<Route path='/' exact render={() =>(
-							localStorage.getItem('user') === null || localStorage.getItem('user') === '' ? 
-							<Login/> : 
-						)} />
 						
 						
-						} */}
+						
+						} 
 
 							<hr />
 						</div>

@@ -8,12 +8,12 @@ export function receiveUsers(users) {
 	};
 }
 
-export function receiveUserAnswer(users, authUser, qid, answers) {
-	return {
-		type: RECEIVE_USER_ANSWER,
-		users,
-		authUser,
-		qid,
-		answers,
-	};
-}
+// export function receiveUserAnswer(users, authUser, qid, answers) {
+// 	return {
+// 		type: RECEIVE_USER_ANSWER,
+// 		users,
+// 		authUser,
+// 		qid,
+// 		answers,
+// 	};
+// }
