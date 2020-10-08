@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Button from '@workday/canvas-kit-react-button';
 import CardComponent from './Cards/CardComponent';
+import { formatQuestion } from '../utils/helpers';
 
 class Questions extends Component {
 	state = {
@@ -62,6 +63,7 @@ function mapStateToProps({ questions, users, authedUser }) {
 				text: questions[qid].optionTwo.text,
 				votes: questions[qid].optionTwo.votes,
 			},
+			timestamp: questions[qid].timestamp,
 			name: users[questions[qid].author].name,
 			avatarURL: users[questions[qid].author].avatarURL,
 		};
