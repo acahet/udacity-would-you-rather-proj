@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -10,8 +9,8 @@ class Questions extends Component {
 		selected: 0,
 	};
 	render() {
-        const { notAnsweredDetails, answeredDetails } = this.props;
-        const { selected } = this.state
+		const { notAnsweredDetails, answeredDetails } = this.props;
+		const { selected } = this.state;
 		return (
 			<div>
 				<div
@@ -34,10 +33,9 @@ class Questions extends Component {
 							</li>
 						</ul>
 					</div>
-					{selected === 0 && <CardComponent mapDetails={notAnsweredDetails}/>}
-					{selected === 1 && <CardComponent mapDetails={answeredDetails}/>}
+					{selected === 0 && <CardComponent mapDetails={notAnsweredDetails} />}
+					{selected === 1 && <CardComponent mapDetails={answeredDetails} />}
 				</div>
-				
 			</div>
 		);
 	}
