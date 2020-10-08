@@ -28,10 +28,12 @@ function PrivateRoute({ component: Component, authedUser, ...rest }) {
 
 class App extends Component {
 	componentDidMount() {
-		this.props.dispatch(handleInitialData());
+		this.props.handleInitialData();
 	}
 
 	render() {
+		const { loading, authedUser } = this.props;
+		console.log('loading status is: ', this.props);
 		return (
 			<Router>
 				<Fragment>
@@ -39,20 +41,27 @@ class App extends Component {
 					<Header />
 					<Switch>
 						<div className="App">
-						{/* <Route path='/'  exact component={Home} />
-							<Route path='/new-question'  exact component={NewQuestion} />
-							<Route path='/leaderboard'  exact component={Leaderboard} /> */}
-							<PrivateRoute path='/' authedUser={this.props.authedUser} exact component={Home} />
-							<PrivateRoute path='/new-question' authedUser={this.props.authedUser} exact component={NewQuestion} />
-							<PrivateRoute path='/leaderboard' authedUser={this.props.authedUser} exact component={Leaderboard} />
-							<Route path='/login' exact component={Login} />
-							 {
-						
-						
-						
-						
-						
-						} 
+							{loading === null ? (
+								<LoadingBar />
+							) : (
+								<div>
+									<PrivateRoute path="/" authedUser={authedUser} exact component={Home} />
+									<PrivateRoute
+										path="/new-question"
+										authedUser={authedUser}
+										exact
+										component={NewQuestion}
+									/>
+									<PrivateRoute
+										path="/leaderboard"
+										authedUser={authedUser}
+										exact
+										component={Leaderboard}
+									/>
+									<Route path="/login" exact component={Login} />
+									{}
+								</div>
+							)}
 
 							<hr />
 						</div>
@@ -63,6 +72,7 @@ class App extends Component {
 	}
 }
 function mapStateToProps({ authedUser }) {
-	return { authedUser };
+	return { loading: authedUser === null };
 }
-export default connect(mapStateToProps)(App);
+
+export default connect(mapStateToProps, { handleInitialData })(App);
