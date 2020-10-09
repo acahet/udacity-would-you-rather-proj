@@ -17,12 +17,12 @@ class Header extends Component {
 					{this.props.loading === true ? null : (
 						<span style={{ left: '50px' }}>Hello {this.props.users[this.props.authedUser]}</span>
 					)}
-					<Button
+					{/* <Button
 						style={{ display: this.props.authedUser !== null ? '' : 'none' }}
 						onClick={this.handleClick}
 					>
 						Logout
-					</Button>
+					</Button> */}
 				</PageHeader>
 			</>
 		);

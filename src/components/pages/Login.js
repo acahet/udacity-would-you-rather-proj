@@ -25,7 +25,7 @@ class Login extends Component {
 		const { isLoggedWith } = this.state;
 
 		console.log(localStorage.setItem('user', isLoggedWith));
-		if (isLoggedWith !== undefined || isLoggedWith !== null) {
+		if (isLoggedWith !== '' || isLoggedWith !== null) {
 			// const storage = localStorage.setItem('user', isLoggedWith);
 			this.props.dispatch(setAuthedUser(isLoggedWith));
 			this.setState(() => ({
@@ -35,7 +35,7 @@ class Login extends Component {
 	};
 
 	render() {
-		console.log('storage user is: ', this.state.isLoggedWith);
+		console.log('isLoggedWith: ', this.state.isLoggedWith);
 		return this.state.redirect === true ? (
 			<Redirect to="/" />
 		) : (

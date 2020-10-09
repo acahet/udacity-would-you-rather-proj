@@ -19,7 +19,7 @@ function PrivateRoute({ component: Component, authedUser, ...rest }) {
 				authedUser !== null ? (
 					<Component {...props} />
 				) : (
-					<Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+					<Redirect to={{ pathname: "/login", state: { from: props.location } }} />
 				)
 			}
 		/>
@@ -32,29 +32,29 @@ class App extends Component {
 	}
 
 	render() {
-		const { loading, authedUser } = this.props;
+		// const { loading, authedUser } = this.props;
 		console.log('loading status is: ', this.props);
 		return (
 			<Router>
 				<Fragment>
-					<LoadingBar />
+					
 					<Header />
 					<Switch>
 						<div className="App">
-							{loading === null ? (
-								<LoadingBar />
+							{this.props.authedUser === true ? (
+								<LoadingBar/>
 							) : (
 								<div>
-									<PrivateRoute path="/" authedUser={authedUser} exact component={Home} />
+									<PrivateRoute path="/" authedUser={this.props.authedUser} exact component={Home} />
 									<PrivateRoute
 										path="/new-question"
-										authedUser={authedUser}
+										authedUser={this.props.authedUser}
 										exact
 										component={NewQuestion}
 									/>
 									<PrivateRoute
 										path="/leaderboard"
-										authedUser={authedUser}
+										authedUser={this.props.authedUser}
 										exact
 										component={Leaderboard}
 									/>
@@ -72,7 +72,7 @@ class App extends Component {
 	}
 }
 function mapStateToProps({ authedUser }) {
-	return { loading: authedUser === null };
+	return { loading: authedUser === null, authedUser };
 }
 
 export default connect(mapStateToProps, { handleInitialData })(App);
