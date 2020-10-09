@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Button from '@workday/canvas-kit-react-button';
 import CardComponent from './Cards/CardComponent';
+import { formatQuestion } from '../utils/helpers';
 
 class Questions extends Component {
 	state = {
@@ -12,7 +13,7 @@ class Questions extends Component {
 		const { notAnsweredDetails, answeredDetails } = this.props;
 		const { selected } = this.state;
 		return (
-			<div style={{ display: 'inline-flex' }}>
+			<div>
 				<div
 					style={{
 						margin: '5px',
@@ -23,18 +24,22 @@ class Questions extends Component {
 						borderRadius: '8px',
 					}}
 				>
-					<div>
+					<div style={{ display: 'flex', justifyContent: 'center' }}>
 						<ul style={{ display: 'inline-flex' }}>
 							<li style={{ paddingRight: '5px', listStyleType: 'none' }}>
-								<Button onClick={() => this.setState({ selected: 0 })}>Unanswered</Button>
+								<Button style={{ padding: '5px' }} onClick={() => this.setState({ selected: 0 })}>
+									Unanswered
+								</Button>
 							</li>
 							<li style={{ paddingLeft: '5px', listStyleType: 'none' }}>
 								<Button onClick={() => this.setState({ selected: 1 })}>Answered</Button>
 							</li>
 						</ul>
 					</div>
-					{selected === 0 && <CardComponent mapDetails={notAnsweredDetails} />}
-					{selected === 1 && <CardComponent mapDetails={answeredDetails} />}
+					<div style={{ display: 'flex', justifyContent: 'center', paddingLeft: '40px' }}>
+						{selected === 0 && <CardComponent mapDetails={notAnsweredDetails} />}
+						{selected === 1 && <CardComponent mapDetails={answeredDetails} />}
+					</div>
 				</div>
 			</div>
 		);
@@ -51,37 +56,39 @@ function mapStateToProps({ questions, users, authedUser }) {
 	const sortedAnswers = answeredByUser.sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 	const sortedNotAnswered = notAnswered.sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 	const answeredDetails = sortedAnswers.map((qid) => {
+		const getValue = questions[qid];
 		return {
 			id: qid,
-			author: questions[qid].author,
+			author: getValue.author,
 			optionOne: {
-				text: questions[qid].optionOne.text,
-				votes: questions[qid].optionOne.votes,
+				text: getValue.optionOne.text,
+				votes: getValue.optionOne.votes,
 			},
 			optionTwo: {
-				text: questions[qid].optionTwo.text,
-				votes: questions[qid].optionTwo.votes,
+				text: getValue.optionTwo.text,
+				votes: getValue.optionTwo.votes,
 			},
-			timestamp: questions[qid].timestamp,
-			name: users[questions[qid].author].name,
-			avatarURL: users[questions[qid].author].avatarURL,
+			timestamp: getValue.timestamp,
+			name: users[getValue.author].name,
+			avatarURL: users[getValue.author].avatarURL,
 		};
 	});
-
 	const notAnsweredDetails = sortedNotAnswered.map((qid) => {
+		const getValue = questions[qid];
+
 		return {
 			id: qid,
-			author: questions[qid].author,
+			author: getValue.author,
 			optionOne: {
-				text: questions[qid].optionOne.text,
-				votes: questions[qid].optionOne.votes,
+				text: getValue.optionOne.text,
+				votes: getValue.optionOne.votes,
 			},
 			optionTwo: {
-				text: questions[qid].optionTwo.text,
-				votes: questions[qid].optionTwo.votes,
+				text: getValue.optionTwo.text,
+				votes: getValue.optionTwo.votes,
 			},
-			name: users[questions[qid].author].name,
-			avatarURL: users[questions[qid].author].avatarURL,
+			name: users[getValue.author].name,
+			avatarURL: users[getValue.author].avatarURL,
 		};
 	});
 

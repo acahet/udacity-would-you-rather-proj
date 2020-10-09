@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import NavBar from '../NavBar';
 import './style.css';
 import { handleAddQuestion } from '../../actions/questions';
+import { Button } from '@workday/canvas-kit-react';
 
 class Add extends Component {
 	state = {
@@ -13,9 +14,7 @@ class Add extends Component {
 	};
 
 	handleChange = (e) => {
-		// const name = e.target.name;
-		// const value = e.target.value;
-		const { name, value } = e.target
+		const { name, value } = e.target;
 		this.setState((prevValue) => ({
 			...prevValue,
 			[name]: value,
@@ -26,20 +25,20 @@ class Add extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		const { optionOne, optionTwo } = this.state;
-		const { dispatch, authedUser } = this.props;
-		dispatch(handleAddQuestion(optionOne, optionTwo, authedUser));
+		const { dispatch } = this.props;
+		dispatch(handleAddQuestion(optionOne, optionTwo));
 		this.setState(() => ({
 			optionOne: '',
 			optionTwo: '',
-			toHome: authedUser ? false : true,
+			toHome: true,
 		}));
 	};
 	render() {
-		const { toHome } = this.state;
+		const { toHome, optionOne, optionTwo } = this.state;
 		if (toHome === true) {
-			return <Redirect to='/' />
+			return <Redirect to="/" />;
 		}
-		
+
 		return (
 			<>
 				<NavBar />
@@ -71,7 +70,9 @@ class Add extends Component {
 								placeholder="Enter Option Two here"
 							/>
 
-							<button>Submit Question</button>
+							<Button disabled={optionOne.length === 0 || optionTwo.length === 0 ? true : false}>
+								Submit Question
+							</Button>
 						</form>
 					</div>
 				</div>

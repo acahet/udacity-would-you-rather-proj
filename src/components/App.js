@@ -7,7 +7,7 @@ import { handleInitialData } from '../actions/shared';
 import '../App.css';
 import Header from './pages/Header';
 import Home from './pages/Home';
-import Leaderboard from './pages/Leaderboard';
+import LeaderBoard from './pages/LeaderBoard';
 import Login from './pages/Login';
 import Add from './pages/AddQuestion';
 
@@ -55,7 +55,7 @@ class App extends Component {
 										path="/leaderboard"
 										authedUser={this.props.authedUser}
 										exact
-										component={Leaderboard}
+										component={LeaderBoard}
 									/>
 									<Route path="/login" exact component={Login} />
 									{}

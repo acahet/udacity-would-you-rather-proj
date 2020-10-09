@@ -29,7 +29,7 @@ export function handleAddQuestion(optionOne, optionTwo) {
 			author: authedUser,
 		})
 			.then((question) => {
-				console.log('question from handle question action ', question);
+				console.log('saveQuestion ', saveQuestion);
 				dispatch(addQuestion(question));
 			})
 			.then(() => dispatch(hideLoading()));

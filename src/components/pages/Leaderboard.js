@@ -3,12 +3,9 @@ import { connect } from 'react-redux';
 import Cards from '../Cards/Cards';
 import NavBar from '../NavBar';
 
-class Leaderboard extends Component {
+class LeaderBoard extends Component {
 	render() {
-		const { leaderBoardInfo, questions } = this.props;
-		// console.log('This Leader board props ', leaderBoardInfo);
-		// const leaderBoardInfoSorted = leaderBoardInfo.filter(f=> f === f.timestamp).sort((a,b) => leaderBoardInfo[b].timestamp - leaderBoardInfo[a].timestamp)
-		console.log('leaderBoardInfoSorted ', questions);
+		const { leaderBoardInfo } = this.props;
 		return (
 			<div>
 				<NavBar />
@@ -60,7 +57,7 @@ class Leaderboard extends Component {
 	}
 }
 
-function mapStateToProps({ users, questions }, props) {
+function mapStateToProps({ users }) {
 	const leaderBoardInfo = Object.keys(users).map((userInfo) => {
 		const user = users[userInfo];
 		const userId = user.id;
@@ -81,4 +78,4 @@ function mapStateToProps({ users, questions }, props) {
 	return { leaderBoardInfo };
 }
 
-export default connect(mapStateToProps)(Leaderboard);
+export default connect(mapStateToProps)(LeaderBoard);

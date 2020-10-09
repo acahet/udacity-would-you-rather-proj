@@ -26,7 +26,7 @@ class Login extends Component {
 
 		console.log(localStorage.setItem('user', isLoggedWith));
 		if (isLoggedWith !== '' || isLoggedWith !== null) {
-			// const storage = localStorage.setItem('user', isLoggedWith);
+			localStorage.setItem('user', isLoggedWith);
 			this.props.dispatch(setAuthedUser(isLoggedWith));
 			this.setState(() => ({
 				redirect: true,
@@ -35,15 +35,16 @@ class Login extends Component {
 	};
 
 	render() {
-		console.log('isLoggedWith: ', this.state.isLoggedWith);
-		return this.state.redirect === true ? (
+		const { isLoggedWith, redirect } = this.state;
+		const { users } = this.props;
+		return redirect === true ? (
 			<Redirect to="/" />
 		) : (
 			<Card heading="Login" style={{ margin: '25px', padding: '10px' }}>
 				<FormField onSubmit={this.handleSubmit}>
-					<Select name="login" value={this.state.isLoggedWith} onChange={(e) => this.handleChange(e)}>
+					<Select name="login" value={isLoggedWith} onChange={(e) => this.handleChange(e)}>
 						<SelectOption value="select" label="Select User" />
-						{this.props.users.map((user) => {
+						{users.map((user) => {
 							console.log('is is: ', user.id);
 							return <SelectOption value={user.id} key={user.id} label={user.name} />;
 						})}
@@ -53,7 +54,7 @@ class Login extends Component {
 						type="submit"
 						onClick={(e) => this.handleSubmit(e)}
 						style={{ margin: '5px' }}
-						disabled={this.state.isLoggedWith === '' || this.state.isLoggedWith === 'select' ? true : false}
+						disabled={isLoggedWith === '' || isLoggedWith === 'select' ? true : false}
 					>
 						Login
 					</Button>
