@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import Button from '@workday/canvas-kit-react-button';
 import CardComponent from './Cards/CardComponent';
-import { formatQuestion } from '../utils/helpers';
 
 class Questions extends Component {
 	state = {
@@ -48,6 +47,7 @@ class Questions extends Component {
 function mapStateToProps({ questions, users, authedUser }) {
 	const { answers } = users[authedUser]; // get answer qid from authenticated user
 	const answeredByUser = Object.keys(answers); // qid answered by user
+	// eslint-disable-next-line array-callback-return
 	const notAnswered = Object.keys(questions).filter((qid) => {
 		const remainQuestions = answeredByUser.filter((answeredQid) => answeredQid === qid);
 		if (remainQuestions === undefined || remainQuestions.length === 0) return qid;
