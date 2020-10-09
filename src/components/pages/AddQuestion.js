@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import NavBar from '../NavBar';
 import './style.css';
 import FormField, { FormFieldLabelPosition } from '@workday/canvas-kit-react-form-field';
 import TextInput from '@workday/canvas-kit-react-text-input';
+import { handleAddQuestion } from '../../actions/questions';
 
 class Add extends Component {
 	state = {
 		optionOne: '',
 		optionTwo: '',
+		toHome: false,
 	};
 
 	handleChange = (e) => {
@@ -23,10 +25,19 @@ class Add extends Component {
 	};
 	handleSubmit = (e) => {
 		e.preventDefault();
-		const {optionOne, optionTwo} = this.state
+		const { optionOne, optionTwo } = this.state;
+		const { dispatch, id } = this.props;
+		dispatch(handleAddQuestion(optionOne, optionTwo, id));
+		this.setState(() => ({
+			optionOne: '',
+			optionTwo: '',
+			toHome: id ? false : true,
+		}));
 		console.log('e', e);
 	};
 	render() {
+		const { toHome } = this.state;
+		if (toHome === true) console.log('to home changed its state to: ', toHome);
 		return (
 			<>
 				<NavBar />
@@ -41,7 +52,7 @@ class Add extends Component {
 						<strong>Would You Rather...</strong>{' '}
 					</p>
 					<div className="container">
-						<form>
+						<form onSubmit={this.handleSubmit}>
 							<input
 								onChange={this.handleChange}
 								name="optionOne"
