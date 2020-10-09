@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import Button from '@workday/canvas-kit-react-button';
 import CardComponent from './Cards/CardComponent';
-import { formatQuestion } from '../utils/helpers';
 
 class Questions extends Component {
 	state = {
