@@ -1,6 +1,6 @@
 import React from 'react';
 import Cards from './Cards';
-import { Button, ButtonVariant } from '@workday/canvas-kit-react-button';
+import { Button } from '@workday/canvas-kit-react-button';
 import { Link } from 'react-router-dom';
 
 export const CardComponent = ({ mapDetails }) => {
