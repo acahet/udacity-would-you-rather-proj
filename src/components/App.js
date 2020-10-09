@@ -9,7 +9,7 @@ import Header from './pages/Header';
 import Home from './pages/Home';
 import Leaderboard from './pages/Leaderboard';
 import Login from './pages/Login';
-import NewQuestion from './pages/NewQuestion';
+import Add from './pages/AddQuestion';
 
 function PrivateRoute({ component: Component, authedUser, ...rest }) {
 	return (
@@ -19,7 +19,7 @@ function PrivateRoute({ component: Component, authedUser, ...rest }) {
 				authedUser !== null ? (
 					<Component {...props} />
 				) : (
-					<Redirect to={{ pathname: "/login", state: { from: props.location } }} />
+					<Redirect to={{ pathname: '/login', state: { from: props.location } }} />
 				)
 			}
 		/>
@@ -37,12 +37,10 @@ class App extends Component {
 		return (
 			<Router>
 				<Fragment>
-					
-					
 					<Switch>
 						<div className="App">
 							{this.props.authedUser === true ? (
-								<LoadingBar/>
+								<LoadingBar />
 							) : (
 								<div>
 									<Header />
@@ -51,7 +49,7 @@ class App extends Component {
 										path="/new-question"
 										authedUser={this.props.authedUser}
 										exact
-										component={NewQuestion}
+										component={Add}
 									/>
 									<PrivateRoute
 										path="/leaderboard"
