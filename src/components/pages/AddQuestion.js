@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import NavBar from '../NavBar';
 import './style.css';
-import FormField, { FormFieldLabelPosition } from '@workday/canvas-kit-react-form-field';
-import TextInput from '@workday/canvas-kit-react-text-input';
 import { handleAddQuestion } from '../../actions/questions';
 
 class Add extends Component {
@@ -14,8 +13,9 @@ class Add extends Component {
 	};
 
 	handleChange = (e) => {
-		const name = e.target.name;
-		const value = e.target.value;
+		// const name = e.target.name;
+		// const value = e.target.value;
+		const { name, value } = e.target
 		this.setState((prevValue) => ({
 			...prevValue,
 			[name]: value,
@@ -33,11 +33,13 @@ class Add extends Component {
 			optionTwo: '',
 			toHome: id ? false : true,
 		}));
-		console.log('e', e);
 	};
 	render() {
 		const { toHome } = this.state;
-		if (toHome === true) console.log('to home changed its state to: ', toHome);
+		if (toHome === true) {
+			return <Redirect to='/' />
+		}
+		
 		return (
 			<>
 				<NavBar />

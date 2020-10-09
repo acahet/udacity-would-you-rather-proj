@@ -15,7 +15,7 @@ class Header extends Component {
 		const { authedUser, users, loading } = this.props;
 		const user = users[authedUser];
 		return (
-			<div >
+			<div>
 				<PageHeader title="Would You Rather Game">
 					{loading === true ? null : (
 						<div style={{ display: authedUser !== null ? 'flex' : 'none', alignItems: 'center' }}>
