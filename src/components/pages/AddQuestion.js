@@ -26,12 +26,12 @@ class Add extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		const { optionOne, optionTwo } = this.state;
-		const { dispatch, id } = this.props;
-		dispatch(handleAddQuestion(optionOne, optionTwo, id));
+		const { dispatch, authedUser } = this.props;
+		dispatch(handleAddQuestion(optionOne, optionTwo, authedUser));
 		this.setState(() => ({
 			optionOne: '',
 			optionTwo: '',
-			toHome: id ? false : true,
+			toHome: authedUser ? false : true,
 		}));
 	};
 	render() {
