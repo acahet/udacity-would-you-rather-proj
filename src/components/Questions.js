@@ -13,7 +13,7 @@ class Questions extends Component {
 		const { notAnsweredDetails, answeredDetails } = this.props;
 		const { selected } = this.state;
 		return (
-			<div>
+			<div style={{display: 'inline-flex'}}>
 				<div
 					style={{
 						margin: '5px',

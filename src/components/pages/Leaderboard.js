@@ -7,7 +7,7 @@ class Leaderboard extends Component {
 	render() {
 		const { leaderBoardInfo, questions } = this.props;
 		// console.log('This Leader board props ', leaderBoardInfo);
-		// const leaderBoardInfoSorted = leaderBoardInfo.filter(f=> f === f.finalScore).sort((a,b) => leaderBoardInfo[b].finalScore - leaderBoardInfo[a].finalScore)
+		// const leaderBoardInfoSorted = leaderBoardInfo.filter(f=> f === f.timestamp).sort((a,b) => leaderBoardInfo[b].timestamp - leaderBoardInfo[a].timestamp)
 		console.log('leaderBoardInfoSorted ', questions);
 		return (
 			<div>
@@ -16,13 +16,20 @@ class Leaderboard extends Component {
 					{leaderBoardInfo.map((board) => {
 						return (
 							<Cards
-								style={{ display: 'flex', justifyContent: 'space-between' }}
+								style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
 								key={board.id}
 								title={board.name}
 								src={board.avatarURL}
 								width="104px"
 							>
-								<div>
+								<div
+									style={{
+										paddingLeft: '3px',
+										paddingRight: '3px',
+										borderRight: '1px solid #ced3d9',
+										borderLeft: '1px solid #ced3d9',
+									}}
+								>
 									<p>
 										Answered Questions: <strong>{board.nOfAnsQuestions}</strong>
 									</p>
@@ -37,9 +44,11 @@ class Leaderboard extends Component {
 										boxShadow: '0px 4px 8px 0 rgba(0,0,0,0.1)',
 									}}
 								>
-									Score
 									<div>
-										<strong>{board.finalScore}</strong>
+										Score
+										<div>
+											<strong>{board.finalScore}</strong>
+										</div>
 									</div>
 								</div>
 							</Cards>

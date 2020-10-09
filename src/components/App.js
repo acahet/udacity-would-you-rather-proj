@@ -38,13 +38,14 @@ class App extends Component {
 			<Router>
 				<Fragment>
 					
-					<Header />
+					
 					<Switch>
 						<div className="App">
 							{this.props.authedUser === true ? (
 								<LoadingBar/>
 							) : (
 								<div>
+									<Header />
 									<PrivateRoute path="/" authedUser={this.props.authedUser} exact component={Home} />
 									<PrivateRoute
 										path="/new-question"

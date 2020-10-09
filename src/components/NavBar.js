@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 export default class NavBar extends Component {
 	render() {
 		return (
-			<ActionBar>
-				<Button style={{ textDecoration: 'none' }} as={Link} to="/">
+			<ActionBar style={{boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 8px 0px', boxSizing:'border-box', borderRadius: '8px'}}>
+				<Button style={{ backgroundColor:'#ffffff', textDecoration: 'none' }} as={Link} to="/">
 					Home
 				</Button>
-				<Button style={{ textDecoration: 'none' }} as={Link} to="/new-question">
+				<Button style={{ backgroundColor:'#ffffff',textDecoration: 'none' }} as={Link} to="/new-question">
 					New Question
 				</Button>
-				<Button style={{ textDecoration: 'none' }} as={Link} to="/leaderboard">
+				<Button style={{ backgroundColor:'#ffffff', textDecoration: 'none' }} as={Link} to="/leaderboard">
 					LeaderBoard
 				</Button>
 			</ActionBar>
