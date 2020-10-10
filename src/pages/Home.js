@@ -8,9 +8,6 @@ export default class Home extends Component {
 			<div>
 				<NavBar />
 				<Questions />
-				<hr />
-				Question:
-				{/* <Question /> */}
 			</div>
 		);
 	}
