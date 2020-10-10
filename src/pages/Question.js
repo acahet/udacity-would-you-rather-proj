@@ -5,10 +5,13 @@ import { withRouter } from 'react-router-dom';
 import Cards from '../components/Cards/Cards';
 
 class Question extends Component {
-	handleSubmit = (e) => {
+	handleChange = (e) => {
         e.preventDefault()
-        console.log(e.target.id)
+        console.log('event target is: ', e.target.id)
     };
+    handleSubmit = () => {
+
+    }
 	render() {
 		const { selectedQuestionInfo } = this.props;
 		const { optionOne, optionTwo, name, avatarURL } = selectedQuestionInfo[0];
@@ -19,12 +22,12 @@ class Question extends Component {
 					<form onSubmit={this.handleSubmit}>
 						<div>
 							<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-								<input type="radio" id="optionOne" />
+								<input type="radio" id="optionOne" onChange={this.handleChange}/>
 								<p>{optionOne}</p>
 							</div>
 
 							<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-								<input type="radio" id="optionTwo" />
+								<input type="radio" id="optionTwo" onChange={this.handleChange}/>
 								<p>{optionTwo}</p>
 							</div>
 						</div>
