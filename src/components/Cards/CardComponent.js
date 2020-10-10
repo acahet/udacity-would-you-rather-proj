@@ -3,7 +3,7 @@ import Cards from './Cards';
 import { Button } from '@workday/canvas-kit-react-button';
 import { Link } from 'react-router-dom';
 
-export const CardComponent = ({ mapDetails }) => {
+export const CardComponent = ({ mapDetails, display }) => {
 	return (
 		<div style={{ display: 'inline-block', justifyContent: 'space-between' }}>
 			{mapDetails.map((details) => {
@@ -20,9 +20,9 @@ export const CardComponent = ({ mapDetails }) => {
 						</p>
 						<div>
 							<Button
-								style={{ textDecoration: 'none', marginTop: '30px', marginRight: '5px' }}
+								style={{ textDecoration: 'none', marginTop: '30px', marginRight: '5px'}}
 								as={Link}
-								to="/"
+								to={`/question/${details.id}`}
 							>
 								View Poll
 							</Button>

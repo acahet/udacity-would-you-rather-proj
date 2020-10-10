@@ -5,11 +5,12 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import { handleInitialData } from '../actions/shared';
 
 import '../App.css';
-import Header from './pages/Header';
-import Home from './pages/Home';
-import LeaderBoard from './pages/LeaderBoard';
-import Login from './pages/Login';
-import Add from './pages/AddQuestion';
+import Header from '../pages/Header';
+import Home from '../pages/Home';
+import LeaderBoard from '../pages/LeaderBoard';
+import Login from '../pages/Login';
+import Add from '../pages/AddQuestion';
+import Question from '../pages/Question';
 
 function PrivateRoute({ component: Component, authedUser, ...rest }) {
 	return (
@@ -32,31 +33,33 @@ class App extends Component {
 	}
 
 	render() {
-		// const { loading, authedUser } = this.props;
+		const { loading, authedUser } = this.props;
 		console.log('loading status is: ', this.props);
 		return (
 			<Router>
 				<Fragment>
+				<LoadingBar />
 					<Switch>
 						<div className="App">
-							{this.props.authedUser === true ? (
+							{loading === null ? (
 								<LoadingBar />
 							) : (
 								<div>
 									<Header />
-									<PrivateRoute path="/" authedUser={this.props.authedUser} exact component={Home} />
+									<PrivateRoute path="/" authedUser={authedUser} exact component={Home} />
 									<PrivateRoute
 										path="/new-question"
-										authedUser={this.props.authedUser}
+										authedUser={authedUser}
 										exact
 										component={Add}
 									/>
 									<PrivateRoute
 										path="/leaderboard"
-										authedUser={this.props.authedUser}
+										authedUser={authedUser}
 										exact
 										component={LeaderBoard}
 									/>
+									<PrivateRoute path='/question/:id' authedUser={authedUser} component={Question} />
 									<Route path="/login" exact component={Login} />
 									{}
 								</div>

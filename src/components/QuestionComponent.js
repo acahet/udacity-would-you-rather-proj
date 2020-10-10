@@ -56,39 +56,40 @@ function mapStateToProps({ questions, users, authedUser }) {
 	const sortedAnswers = answeredByUser.sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 	const sortedNotAnswered = notAnswered.sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 	const answeredDetails = sortedAnswers.map((qid) => {
-		const getValue = questions[qid];
+		const getValueOf = questions[qid];
 		return {
 			id: qid,
-			author: getValue.author,
+			author: getValueOf.author,
 			optionOne: {
-				text: getValue.optionOne.text,
-				votes: getValue.optionOne.votes,
+				text: getValueOf.optionOne.text,
+				votes: getValueOf.optionOne.votes,
 			},
 			optionTwo: {
-				text: getValue.optionTwo.text,
-				votes: getValue.optionTwo.votes,
+				text: getValueOf.optionTwo.text,
+				votes: getValueOf.optionTwo.votes,
 			},
-			timestamp: getValue.timestamp,
-			name: users[getValue.author].name,
-			avatarURL: users[getValue.author].avatarURL,
+			timestamp: getValueOf.timestamp,
+			name: users[getValueOf.author].name,
+			avatarURL: users[getValueOf.author].avatarURL,
 		};
 	});
+
 	const notAnsweredDetails = sortedNotAnswered.map((qid) => {
-		const getValue = questions[qid];
+		const getValueOf = questions[qid];
 
 		return {
 			id: qid,
-			author: getValue.author,
+			author: getValueOf.author,
 			optionOne: {
-				text: getValue.optionOne.text,
-				votes: getValue.optionOne.votes,
+				text: getValueOf.optionOne.text,
+				votes: getValueOf.optionOne.votes,
 			},
 			optionTwo: {
-				text: getValue.optionTwo.text,
-				votes: getValue.optionTwo.votes,
+				text: getValueOf.optionTwo.text,
+				votes: getValueOf.optionTwo.votes,
 			},
-			name: users[getValue.author].name,
-			avatarURL: users[getValue.author].avatarURL,
+			name: users[getValueOf.author].name,
+			avatarURL: users[getValueOf.author].avatarURL,
 		};
 	});
 
