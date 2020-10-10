@@ -42,7 +42,7 @@ class App extends Component {
 					<Switch>
 						<div className="App">
 							{loading === null ? (
-								<LoadingBar />
+								null
 							) : (
 								<div>
 									<Header />
