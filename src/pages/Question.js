@@ -5,6 +5,10 @@ import { withRouter } from 'react-router-dom';
 import Cards from '../components/Cards/Cards';
 
 class Question extends Component {
+	handleSubmit = (e) => {
+        e.preventDefault()
+        console.log(e.target.id)
+    };
 	render() {
 		const { selectedQuestionInfo } = this.props;
 		const { optionOne, optionTwo, name, avatarURL } = selectedQuestionInfo[0];
@@ -12,7 +16,7 @@ class Question extends Component {
 		return (
 			<div style={{ display: 'flex', justifyContent: 'center' }}>
 				<Cards src={avatarURL} style={{ display: 'flex' }} title="Would You Rather" heading={`${name} asks:`}>
-					<form>
+					<form onSubmit={this.handleSubmit}>
 						<div>
 							<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 								<input type="radio" id="optionOne" />
