@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import NavBar from '../NavBar';
+import NavBar from '../components/NavBar';
 import './style.css';
-import { handleAddQuestion } from '../../actions/questions';
+import { handleAddQuestion } from '../actions/questions';
 import { Button } from '@workday/canvas-kit-react';
 
 class Add extends Component {
@@ -55,18 +55,20 @@ class Add extends Component {
 					<div className="container">
 						<form onSubmit={this.handleSubmit}>
 							<input
+								className="add-question-input"
 								onChange={this.handleChange}
 								name="optionOne"
-								value={this.state.optionOne}
+								value={optionOne}
 								placeholder="Enter Option One here"
 							/>
 							<h4>
 								<strong> ...OR... </strong>
 							</h4>
 							<input
+								className="add-question-input"
 								onChange={this.handleChange}
 								name="optionTwo"
-								value={this.state.optionTwo}
+								value={optionTwo}
 								placeholder="Enter Option Two here"
 							/>
 

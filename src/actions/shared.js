@@ -1,7 +1,7 @@
 import { getInitialData } from '../utils/api';
 import { receiveUsers } from './users';
 import { showLoading, hideLoading } from 'react-redux-loading';
-import { setAuthedUser } from './authedUser';
+// import { setAuthedUser } from './authedUser';
 import { receiveQuestions } from './questions';
 
 // const AUTHED_ID = 'sarahedo';

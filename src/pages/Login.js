@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { setAuthedUser } from '../../actions/authedUser';
+import { setAuthedUser } from '../actions/authedUser';
 import Select, { SelectOption } from '@workday/canvas-kit-react-select';
 import FormField from '@workday/canvas-kit-react-form-field';
 import Card from '@workday/canvas-kit-react-card';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { removeAuthedUser } from '../../actions/authedUser';
+import { removeAuthedUser } from '../actions/authedUser';
 import { PageHeader } from '@workday/canvas-kit-react-page-header';
 import Button from '@workday/canvas-kit-react-button';
 import { Avatar } from '@workday/canvas-kit-react';

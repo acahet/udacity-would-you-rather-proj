@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Cards from '../Cards/Cards';
-import NavBar from '../NavBar';
+import Cards from '../components/Cards/Cards';
+import NavBar from '../components/NavBar';
 
 class LeaderBoard extends Component {
 	render() {
