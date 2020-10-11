@@ -3,9 +3,6 @@ import { connect } from 'react-redux';
 
 import Button from '@workday/canvas-kit-react-button';
 import CardComponent from './Cards/CardComponent';
-import Results from '../pages/Results';
-
-import ProgressBar from 'react-bootstrap/ProgressBar'
 class Questions extends Component {
 	state = {
 		selected: 0,

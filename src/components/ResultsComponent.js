@@ -1,5 +1,6 @@
 import React from 'react';
-import Cards from '../components/Cards/Cards';
+import Cards from './Cards/Cards';
+import { AiOutlineTrophy } from 'react-icons/ai';
 
 import ProgressBar from 'react-bootstrap/ProgressBar';
 const Results = ({
@@ -12,14 +13,15 @@ const Results = ({
 	votesPercentageOptionOne,
 	votesPercentageOptionTwo,
 	totalUsers,
+	selectedAnswer,
 }) => {
 	const resultsStyle = {
 		boxShadow: '0px 4px 8px 0 rgba(0,0,0,0.1)',
 		borderRadius: '8px',
 		border: '1px solid #ced3d9',
 		boxSizing: 'border-box',
-        margin: '3px',
-        width: '210px' 
+		margin: '3px',
+		width: '210px',
 	};
 
 	return (
@@ -30,10 +32,11 @@ const Results = ({
 				title="Results"
 				heading={`Asked by: ${name}`}
 			>
-				<div >
+				<div>
 					<div style={resultsStyle}>
 						<p>
 							<strong>{optionOneQuestion}</strong>
+							{selectedAnswer === 'optionOne' ? <AiOutlineTrophy /> : ''}
 						</p>
 						<ProgressBar
 							style={{ border: '1px solid #ced3d9', backgroundColor: '#50a3a2' }}
@@ -50,7 +53,8 @@ const Results = ({
 
 					<div style={resultsStyle}>
 						<p>
-							<strong>{optionTwoQuestion}</strong>
+							<strong>{optionTwoQuestion} </strong>
+							{selectedAnswer === 'optionTwo' ? <AiOutlineTrophy /> : ''}
 						</p>
 						<ProgressBar
 							style={{ border: '1px solid #ced3d9', backgroundColor: '#50a3a2' }}

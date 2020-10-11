@@ -4,22 +4,24 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Cards from '../components/Cards/Cards';
 import NavBar from '../components/NavBar';
-import Results from './Results';
+import Results from '../components/ResultsComponent';
 class Question extends Component {
 	state = {
-		optionOneCheck: true,
-		optionTwoCheck: false,
+		selectedOption: '',
 	};
 	handleChange = (e) => {
-		e.preventDefault();
-		const { name, value } = e.target;
-		this.setState((prevValue) => ({
-			...prevValue,
-			[name]: !value,
+		const answerIs = e.target.value;
+		this.setState(() => ({
+			selectedOption: answerIs,
 		}));
-		console.log('event target is: ', e.target.id);
 	};
-	handleSubmit = () => {};
+	handleSubmit = (e) => {
+		e.preventDefault();
+		const { questionsId } = this.props.selectedQuestionInfo[0];
+
+		console.log('Option selected to save is: ', this.state.selectedOption);
+		console.log('questionsId selected to save is: ', questionsId);
+	};
 	render() {
 		const { selectedQuestionInfo, filterAnsweredQuestion } = this.props;
 		const {
@@ -33,8 +35,9 @@ class Question extends Component {
 			percentageOptionOne,
 			percentageOptionTwo,
 			totalUser,
+			authedUserAnswer,
 		} = selectedQuestionInfo[0];
-		const { optionOneCheck, optionTwoCheck } = this.state;
+		const { selectedOption } = this.state;
 		return (
 			<>
 				<NavBar />
@@ -50,6 +53,7 @@ class Question extends Component {
 							totalUsers={totalUser}
 							votesPercentageOptionOne={percentageOptionOne}
 							votesPercentageOptionTwo={percentageOptionTwo}
+							selectedAnswer={authedUserAnswer}
 						/>
 					) : (
 						<Cards
@@ -59,14 +63,14 @@ class Question extends Component {
 							heading={`${name} asks:`}
 						>
 							<form onSubmit={this.handleSubmit}>
-								<div>
+								<div onChange={this.handleChange}>
 									<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 										<input
 											type="radio"
-											checked={optionOneCheck}
-											value={optionOneCheck}
-											name="optionOne"
-											onClick={this.handleChange}
+											value="optionOne"
+											name="vote"
+											checked={selectedOption === 'optionOne'}
+											onChange={this.handleChange}
 										/>
 										<p>{optionOne}</p>
 									</div>
@@ -74,9 +78,9 @@ class Question extends Component {
 									<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 										<input
 											type="radio"
-											checked={optionTwoCheck}
-											value={optionTwoCheck}
-											name="optionTwo"
+											value="optionTwo"
+											name="vote"
+											checked={selectedOption === 'optionTwo'}
 											onChange={this.handleChange}
 										/>
 										<p>{optionTwo}</p>
@@ -113,6 +117,7 @@ function mapStateToProps({ questions, users, authedUser }, props) {
 		const name = users[author].name;
 		const avatarURL = users[author].avatarURL;
 		const totalUser = Object.keys(users).length;
+		const authedUserAnswer = users[author].answers[index];
 		const percentageOptionOne = ((optionOneVoteLength / totalUser) * 100).toFixed(0);
 		const percentageOptionTwo = ((optionTwoVoteLength / totalUser) * 100).toFixed(0);
 		return {
@@ -129,9 +134,9 @@ function mapStateToProps({ questions, users, authedUser }, props) {
 			name,
 			avatarURL,
 			totalUser,
+			authedUserAnswer,
 		};
 	});
-	console.log('selectedQuestionInfo[0].questionsId ', selectedQuestionInfo[0].questionsId);
 	const filterAnsweredQuestion = answeredByUser.find((qid) => {
 		return qid === selectedQuestionInfo[0].questionsId;
 	});
