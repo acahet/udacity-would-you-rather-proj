@@ -33,6 +33,7 @@ class Question extends Component {
 			percentageOptionOne,
 			percentageOptionTwo,
 			totalUser,
+			authedUserAnswer,
 		} = selectedQuestionInfo[0];
 		const { optionOneCheck, optionTwoCheck } = this.state;
 		return (
@@ -50,6 +51,7 @@ class Question extends Component {
 							totalUsers={totalUser}
 							votesPercentageOptionOne={percentageOptionOne}
 							votesPercentageOptionTwo={percentageOptionTwo}
+							selectedAnswer={authedUserAnswer}
 						/>
 					) : (
 						<Cards
@@ -113,6 +115,8 @@ function mapStateToProps({ questions, users, authedUser }, props) {
 		const name = users[author].name;
 		const avatarURL = users[author].avatarURL;
 		const totalUser = Object.keys(users).length;
+		const authedUserAnswer = users[author].answers[index];
+		console.log('answer selected by current user was: ',users[author].answers[index] )
 		const percentageOptionOne = ((optionOneVoteLength / totalUser) * 100).toFixed(0);
 		const percentageOptionTwo = ((optionTwoVoteLength / totalUser) * 100).toFixed(0);
 		return {
@@ -129,6 +133,7 @@ function mapStateToProps({ questions, users, authedUser }, props) {
 			name,
 			avatarURL,
 			totalUser,
+			authedUserAnswer,
 		};
 	});
 	console.log('selectedQuestionInfo[0].questionsId ', selectedQuestionInfo[0].questionsId);
