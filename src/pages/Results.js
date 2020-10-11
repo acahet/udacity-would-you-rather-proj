@@ -18,48 +18,54 @@ const Results = ({
 		borderRadius: '8px',
 		border: '1px solid #ced3d9',
 		boxSizing: 'border-box',
-		margin: '10px',
+        margin: '3px',
+        width: '210px' 
 	};
+
 	return (
-		<div>
-			<div>Results View</div>
-
-			<div style={{ display: 'inline-block' }}>
-				<Cards
-					style={{ display: 'flex', alignItems: 'center' }}
-					src={avatarURL}
-					title="Results"
-					heading={`Asked by: ${name}`}
-				>
-					<div>
-						<div style={resultsStyle}>
-							<div>{optionOneQuestion}</div>
-							<ProgressBar
-								variant="success"
-								now={votesPercentageOptionOne}
-								label={`${votesPercentageOptionOne}%`}
-							/>
-							<p>
-								{' '}
-								{totalVotesOptionOne} out of {totalUsers} votes{' '}
-							</p>
-						</div>
-
-						<div style={resultsStyle}>
-							<div>{optionTwoQuestion}</div>
-							<ProgressBar
-								variant="success"
-								now={votesPercentageOptionTwo}
-								label={`${votesPercentageOptionTwo}%`}
-							/>
-							<p>
-								{' '}
-								{totalVotesOptionTwo} out of {totalUsers} votes{' '}
-							</p>
-						</div>
+		<div style={{ display: 'inline-block' }}>
+			<Cards
+				style={{ display: 'flex', alignItems: 'center' }}
+				src={avatarURL}
+				title="Results"
+				heading={`Asked by: ${name}`}
+			>
+				<div >
+					<div style={resultsStyle}>
+						<p>
+							<strong>{optionOneQuestion}</strong>
+						</p>
+						<ProgressBar
+							style={{ border: '1px solid #ced3d9', backgroundColor: '#50a3a2' }}
+							isChild={true}
+							now={votesPercentageOptionOne}
+							label={`${votesPercentageOptionOne}%`}
+						/>
+						<p>
+							<strong>
+								{totalVotesOptionOne} out of {totalUsers} votes
+							</strong>
+						</p>
 					</div>
-				</Cards>
-			</div>
+
+					<div style={resultsStyle}>
+						<p>
+							<strong>{optionTwoQuestion}</strong>
+						</p>
+						<ProgressBar
+							style={{ border: '1px solid #ced3d9', backgroundColor: '#50a3a2' }}
+							isChild={true}
+							now={votesPercentageOptionTwo}
+							label={`${votesPercentageOptionTwo}%`}
+						/>
+						<p>
+							<strong>
+								{totalVotesOptionTwo} out of {totalUsers} votes
+							</strong>
+						</p>
+					</div>
+				</div>
+			</Cards>
 		</div>
 	);
 };
