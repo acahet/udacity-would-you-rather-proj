@@ -43,7 +43,7 @@ class App extends Component {
 					<Switch>
 						<div className="App">
 							{loading === null ? null : (
-								<div>
+								<>
 									<Header />
 									<PrivateRoute path="/" authedUser={authedUser} exact component={Home} />
 									<PrivateRoute path="/add" authedUser={authedUser} exact component={Add} />
@@ -57,7 +57,7 @@ class App extends Component {
 									<Route path="/login" exact component={Login} />
 									{/* <Route component={PageNotFound} /> */}
 									{}
-								</div>
+								</>
 							)}
 
 							<hr />
