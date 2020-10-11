@@ -11,6 +11,7 @@ import LeaderBoard from '../pages/LeaderBoard';
 import Login from '../pages/Login';
 import Add from '../pages/AddQuestion';
 import Question from '../pages/Question';
+import PageNotFound from '../pages/PageNotFound';
 
 function PrivateRoute({ component: Component, authedUser, ...rest }) {
 	return (
@@ -38,29 +39,23 @@ class App extends Component {
 		return (
 			<Router>
 				<Fragment>
-				<LoadingBar />
+					<LoadingBar />
 					<Switch>
 						<div className="App">
-							{loading === null ? (
-								null
-							) : (
+							{loading === null ? null : (
 								<div>
 									<Header />
 									<PrivateRoute path="/" authedUser={authedUser} exact component={Home} />
-									<PrivateRoute
-										path="/new-question"
-										authedUser={authedUser}
-										exact
-										component={Add}
-									/>
+									<PrivateRoute path="/add" authedUser={authedUser} exact component={Add} />
 									<PrivateRoute
 										path="/leaderboard"
 										authedUser={authedUser}
 										exact
 										component={LeaderBoard}
 									/>
-									<PrivateRoute path='/question/:id' authedUser={authedUser} component={Question} />
+									<PrivateRoute path="/questions/:id" authedUser={authedUser} exact component={Question} />
 									<Route path="/login" exact component={Login} />
+									{/* <Route component={PageNotFound} /> */}
 									{}
 								</div>
 							)}
