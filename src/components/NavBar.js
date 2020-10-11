@@ -14,7 +14,7 @@ const NavBar = () => {
 			<Button style={{ backgroundColor: '#ffffff', textDecoration: 'none' }} as={Link} to="/">
 				Home
 			</Button>
-			<Button style={{ backgroundColor: '#ffffff', textDecoration: 'none' }} as={Link} to="/new-question">
+			<Button style={{ backgroundColor: '#ffffff', textDecoration: 'none' }} as={Link} to="/add">
 				New Question
 			</Button>
 			<Button style={{ backgroundColor: '#ffffff', textDecoration: 'none' }} as={Link} to="/leaderboard">
