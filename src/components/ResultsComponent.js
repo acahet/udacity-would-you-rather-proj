@@ -1,5 +1,5 @@
 import React from 'react';
-import Cards from '../components/Cards/Cards';
+import Cards from './Cards/Cards';
 import { AiOutlineTrophy } from 'react-icons/ai';
 
 import ProgressBar from 'react-bootstrap/ProgressBar';
