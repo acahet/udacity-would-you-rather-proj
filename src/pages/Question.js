@@ -2,12 +2,14 @@ import { Button } from '@workday/canvas-kit-react';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { handleSaveAnswer } from '../actions/questions';
 import Cards from '../components/Cards/Cards';
 import NavBar from '../components/NavBar';
 import Results from '../components/ResultsComponent';
 class Question extends Component {
 	state = {
 		selectedOption: '',
+		toResults: false
 	};
 	handleChange = (e) => {
 		const answerIs = e.target.value;
@@ -17,8 +19,10 @@ class Question extends Component {
 	};
 	handleSubmit = (e) => {
 		e.preventDefault();
+		const {selectedOption } = this.state
 		const { questionsId } = this.props.selectedQuestionInfo[0];
-
+		const { dispatch } = this.props
+		dispatch(handleSaveAnswer(questionsId, selectedOption))
 		console.log('Option selected to save is: ', this.state.selectedOption);
 		console.log('questionsId selected to save is: ', questionsId);
 	};

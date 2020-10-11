@@ -1,4 +1,5 @@
 import { SET_AUTHED_USER, REMOVE_AUTHED_USER } from '../actions/authedUser';
+import { SAVE_QUESTION_ANSWER } from '../actions/questions';
 
 export default function authedUser(state = null, action) {
 	switch (action.type) {
@@ -6,6 +7,7 @@ export default function authedUser(state = null, action) {
 			return action.id;
 		case REMOVE_AUTHED_USER:
 			return (state = null);
+
 		default:
 			return state;
 	}
