@@ -10,7 +10,6 @@ class Header extends Component {
 		e.preventDefault();
 		const { dispatch } = this.props;
 		dispatch(removeAuthedUser());
-		localStorage.setItem('user', '');
 	};
 	render() {
 		const { authedUser, users, loading } = this.props;

@@ -51,7 +51,7 @@ class App extends Component {
 							<PrivateRoute path="/" authedUser={authedUser} exact component={Questions} />
 							<PrivateRoute path="/add" authedUser={authedUser} exact component={Add} />
 							<PrivateRoute path="/leaderboard" authedUser={authedUser} exact component={LeaderBoard} />
-							<PrivateRoute path="/questions/:id" authedUser={authedUser} exact component={Question} />
+							<PrivateRoute path="/questions/:question_id" authedUser={authedUser} exact component={Question} />
 							<Route path="/login" exact component={Login} />
 							{/* <Route path="/login" exact render={() => {
 								<Login isLoaded={this.state.isLoaded} />

@@ -13,7 +13,6 @@ class Questions extends Component {
 		const { selected } = this.state;
 
 		return notAnsweredDetails.length === 0 ? (
-			
 			<div>
 				<Header />
 				<h1> Congrats !!!</h1>
@@ -57,10 +56,12 @@ function mapStateToProps({ questions, users, authedUser }) {
 	const { answers } = users[authedUser]; // get answer qid from authenticated user
 	const answeredByUser = Object.keys(answers).sort((a, b) => questions[b].timestamp - questions[a].timestamp); // qid answered by user
 	// eslint-disable-next-line array-callback-return
-	const notAnswered = Object.keys(questions).filter((qid) => {
-		const remainQuestions = answeredByUser.filter((answeredQid) => answeredQid === qid);
-		if (remainQuestions === undefined || remainQuestions.length === 0) return qid;
-	}).sort((a, b) => questions[b].timestamp - questions[a].timestamp); //qid not answered by current user
+	const notAnswered = Object.keys(questions)
+		.filter((qid) => {
+			const remainQuestions = answeredByUser.filter((answeredQid) => answeredQid === qid);
+			if (remainQuestions === undefined || remainQuestions.length === 0) return qid;
+		})
+		.sort((a, b) => questions[b].timestamp - questions[a].timestamp); //qid not answered by current user
 
 	const answeredDetails = answeredByUser.map((qid) => {
 		const getValueOf = questions[qid];
