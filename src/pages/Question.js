@@ -100,9 +100,10 @@ class Question extends Component {
 }
 
 function mapStateToProps({ questions, users, authedUser }, props) {
-	const { id } = props.match.params;
+	const { question_id } = props.match.params;
 	const selectedQuestion = Object.keys(questions).filter((index) => {
 		const questionsId = questions[index].id;
+		const id = question_id.slice(9);
 		return questionsId === id;
 	});
 	const answeredByUser = Object.keys(users[authedUser].answers);

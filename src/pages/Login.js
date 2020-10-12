@@ -25,9 +25,7 @@ class Login extends Component {
 		e.preventDefault();
 		const { isLoggedWith } = this.state;
 
-		console.log(localStorage.setItem('user', isLoggedWith));
 		if (isLoggedWith !== '' || isLoggedWith !== null) {
-			localStorage.setItem('user', isLoggedWith);
 			this.props.dispatch(setAuthedUser(isLoggedWith));
 			this.setState(() => ({
 				redirect: true,
