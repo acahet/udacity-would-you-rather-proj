@@ -38,8 +38,6 @@ class Header extends Component {
 	}
 }
 function mapStateToProps({ users, authedUser }) {
-	const currentUser = users[authedUser];
-	console.log('currentUser ', currentUser);
 	return { loading: authedUser === null, users, authedUser };
 }
 export default connect(mapStateToProps)(Header);

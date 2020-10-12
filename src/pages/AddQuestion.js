@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import NavBar from '../components/NavBar';
 import './style.css';
 import { handleAddQuestion } from '../actions/questions';
 import { Button } from '@workday/canvas-kit-react';

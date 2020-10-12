@@ -37,7 +37,7 @@ class App extends Component {
 	}
 
 	render() {
-		const { loading, authedUser, users } = this.props;
+		const { authedUser } = this.props;
 		console.log('loading status is: ', this.props);
 		return (
 			<Router>

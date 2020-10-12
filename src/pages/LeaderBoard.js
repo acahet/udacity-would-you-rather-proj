@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Cards from '../components/Cards/Cards';
-import NavBar from '../components/NavBar';
 import Header from './Header';
 
 class LeaderBoard extends Component {
