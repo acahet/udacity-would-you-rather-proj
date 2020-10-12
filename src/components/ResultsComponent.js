@@ -36,10 +36,17 @@ const Results = ({
 					<div style={resultsStyle}>
 						<p>
 							<strong>{optionOneQuestion}</strong>
-							{selectedAnswer === 'optionOne' ? <AiOutlineTrophy /> : ''}
+							{selectedAnswer === 'optionOne' ? (
+								<AiOutlineTrophy
+									color="#b8de6f"
+									style={{ strokeWidth: '30px', height: '35px', width: '35px' }}
+								/>
+							) : (
+								''
+							)}
 						</p>
 						<ProgressBar
-							style={{ border: '1px solid #ced3d9', backgroundColor: '#50a3a2' }}
+							style={{ border: '1px solid #ced3d9', backgroundColor: '#ee6f57' }}
 							isChild={true}
 							now={votesPercentageOptionOne}
 							label={`${votesPercentageOptionOne}%`}
@@ -54,10 +61,17 @@ const Results = ({
 					<div style={resultsStyle}>
 						<p>
 							<strong>{optionTwoQuestion} </strong>
-							{selectedAnswer === 'optionTwo' ? <AiOutlineTrophy /> : ''}
 						</p>
+						{selectedAnswer === 'optionTwo' ? (
+							<AiOutlineTrophy
+								color="#b8de6f"
+								style={{ strokeWidth: '30px', height: '35px', width: '35px' }}
+							/>
+						) : (
+							''
+						)}
 						<ProgressBar
-							style={{ border: '1px solid #ced3d9', backgroundColor: '#50a3a2' }}
+							style={{ border: '1px solid #ced3d9', backgroundColor: '#ee6f57' }}
 							isChild={true}
 							now={votesPercentageOptionTwo}
 							label={`${votesPercentageOptionTwo}%`}
