@@ -45,7 +45,6 @@ class Login extends Component {
 					<Select name="login" value={isLoggedWith} onChange={(e) => this.handleChange(e)}>
 						<SelectOption value="select" label="Select User" />
 						{users.map((user) => {
-							console.log('is is: ', user.id);
 							return <SelectOption value={user.id} key={user.id} label={user.name} />;
 						})}
 					</Select>

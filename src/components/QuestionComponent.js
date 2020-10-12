@@ -10,7 +10,13 @@ class Questions extends Component {
 	render() {
 		const { notAnsweredDetails, answeredDetails } = this.props;
 		const { selected } = this.state;
-		return (
+
+		return notAnsweredDetails.length === 0 ? (
+			<div>
+				<h1> Congrats !!!</h1>
+				<p> You have answered all questions available</p>
+			</div>
+		) : (
 			<div>
 				<div
 					style={{
@@ -41,7 +47,6 @@ class Questions extends Component {
 				</div>
 			</div>
 		);
-		
 	}
 }
 function mapStateToProps({ questions, users, authedUser }) {
