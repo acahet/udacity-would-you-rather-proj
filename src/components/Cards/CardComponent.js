@@ -22,7 +22,7 @@ export const CardComponent = ({ mapDetails }) => {
 							<Button
 								style={{ textDecoration: 'none', marginTop: '30px', marginRight: '5px'}}
 								as={Link}
-								to={`/questions/${details.id}`}
+								to={`/questions/question_${details.id}`}
 							>
 								View Poll
 							</Button>
