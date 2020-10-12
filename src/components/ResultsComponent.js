@@ -3,6 +3,7 @@ import Cards from './Cards/Cards';
 import { AiOutlineTrophy } from 'react-icons/ai';
 
 import ProgressBar from 'react-bootstrap/ProgressBar';
+import Header from '../pages/Header';
 const Results = ({
 	name,
 	avatarURL,
@@ -25,18 +26,46 @@ const Results = ({
 	};
 
 	return (
-		<div style={{ display: 'inline-block' }}>
-			<Cards
-				style={{ display: 'flex', alignItems: 'center' }}
-				src={avatarURL}
-				title="Results"
-				heading={`Asked by: ${name}`}
-			>
-				<div>
-					<div style={resultsStyle}>
-						<p>
-							<strong>{optionOneQuestion}</strong>
-							{selectedAnswer === 'optionOne' ? (
+		<>
+			{/* <Header /> */}
+			<div style={{ display: 'inline-block' }}>
+				<Cards
+					style={{ display: 'flex', alignItems: 'center' }}
+					src={avatarURL}
+					title="Results"
+					heading={`Asked by: ${name}`}
+				>
+					<div>
+						<div style={resultsStyle}>
+							<p>
+								<strong>{optionOneQuestion}</strong>
+								{selectedAnswer === 'optionOne' ? (
+									<AiOutlineTrophy
+										color="#b8de6f"
+										style={{ strokeWidth: '30px', height: '35px', width: '35px' }}
+									/>
+								) : (
+									''
+								)}
+							</p>
+							<ProgressBar
+								style={{ border: '1px solid #ced3d9', backgroundColor: '#ee6f57' }}
+								isChild={true}
+								now={votesPercentageOptionOne}
+								label={`${votesPercentageOptionOne}%`}
+							/>
+							<p>
+								<strong>
+									{totalVotesOptionOne} out of {totalUsers} votes
+								</strong>
+							</p>
+						</div>
+
+						<div style={resultsStyle}>
+							<p>
+								<strong>{optionTwoQuestion} </strong>
+							</p>
+							{selectedAnswer === 'optionTwo' ? (
 								<AiOutlineTrophy
 									color="#b8de6f"
 									style={{ strokeWidth: '30px', height: '35px', width: '35px' }}
@@ -44,47 +73,22 @@ const Results = ({
 							) : (
 								''
 							)}
-						</p>
-						<ProgressBar
-							style={{ border: '1px solid #ced3d9', backgroundColor: '#ee6f57' }}
-							isChild={true}
-							now={votesPercentageOptionOne}
-							label={`${votesPercentageOptionOne}%`}
-						/>
-						<p>
-							<strong>
-								{totalVotesOptionOne} out of {totalUsers} votes
-							</strong>
-						</p>
-					</div>
-
-					<div style={resultsStyle}>
-						<p>
-							<strong>{optionTwoQuestion} </strong>
-						</p>
-						{selectedAnswer === 'optionTwo' ? (
-							<AiOutlineTrophy
-								color="#b8de6f"
-								style={{ strokeWidth: '30px', height: '35px', width: '35px' }}
+							<ProgressBar
+								style={{ border: '1px solid #ced3d9', backgroundColor: '#ee6f57' }}
+								isChild={true}
+								now={votesPercentageOptionTwo}
+								label={`${votesPercentageOptionTwo}%`}
 							/>
-						) : (
-							''
-						)}
-						<ProgressBar
-							style={{ border: '1px solid #ced3d9', backgroundColor: '#ee6f57' }}
-							isChild={true}
-							now={votesPercentageOptionTwo}
-							label={`${votesPercentageOptionTwo}%`}
-						/>
-						<p>
-							<strong>
-								{totalVotesOptionTwo} out of {totalUsers} votes
-							</strong>
-						</p>
+							<p>
+								<strong>
+									{totalVotesOptionTwo} out of {totalUsers} votes
+								</strong>
+							</p>
+						</div>
 					</div>
-				</div>
-			</Cards>
-		</div>
+				</Cards>
+			</div>
+		</>
 	);
 };
 

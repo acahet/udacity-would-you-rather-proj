@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { handleSaveAnswer } from '../actions/questions';
 import Cards from '../components/Cards/Cards';
-import NavBar from '../components/NavBar';
 import Results from '../components/ResultsComponent';
+import Header from './Header';
 
 class Question extends Component {
 	state = {
@@ -42,7 +42,7 @@ class Question extends Component {
 		const { selectedOption } = this.state;
 		return (
 			<>
-				<NavBar />
+				<Header />
 				<div style={{ display: 'flex', justifyContent: 'center' }}>
 					{filterAnsweredQuestion === questionsId ? (
 						<Results
