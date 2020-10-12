@@ -38,32 +38,19 @@ class App extends Component {
 		console.log('loading status is: ', this.props);
 		return (
 			<Router>
-				<Fragment>
-					<LoadingBar />
-					<Switch>
-						<div className="App">
-							{loading === null ? null : (
-								<>
-									<Header />
-									<PrivateRoute path="/" authedUser={authedUser} exact component={Home} />
-									<PrivateRoute path="/add" authedUser={authedUser} exact component={Add} />
-									<PrivateRoute
-										path="/leaderboard"
-										authedUser={authedUser}
-										exact
-										component={LeaderBoard}
-									/>
-									<PrivateRoute path="/questions/:id" authedUser={authedUser} exact component={Question} />
-									<Route path="/login" exact component={Login} />
-									{/* <Route component={PageNotFound} /> */}
-									{}
-								</>
-							)}
-
-							<hr />
-						</div>
-					</Switch>
-				</Fragment>
+				<LoadingBar />
+				{loading === null ? null : (
+					<div className="App">
+						<Header />
+						<PrivateRoute path="/" authedUser={authedUser} exact component={Home} />
+						<PrivateRoute path="/add" authedUser={authedUser} exact component={Add} />
+						<PrivateRoute path="/leaderboard" authedUser={authedUser} exact component={LeaderBoard} />
+						<PrivateRoute path="/questions/:id" authedUser={authedUser} exact component={Question} />
+						<Route path="/login" exact component={Login} />
+						{/* <Route component={PageNotFound} /> */}
+						{}
+					</div>
+				)}
 			</Router>
 		);
 	}

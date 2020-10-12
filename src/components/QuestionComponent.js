@@ -51,16 +51,14 @@ class Questions extends Component {
 }
 function mapStateToProps({ questions, users, authedUser }) {
 	const { answers } = users[authedUser]; // get answer qid from authenticated user
-	const answeredByUser = Object.keys(answers); // qid answered by user
+	const answeredByUser = Object.keys(answers).sort((a, b) => questions[b].timestamp - questions[a].timestamp); // qid answered by user
 	// eslint-disable-next-line array-callback-return
 	const notAnswered = Object.keys(questions).filter((qid) => {
 		const remainQuestions = answeredByUser.filter((answeredQid) => answeredQid === qid);
 		if (remainQuestions === undefined || remainQuestions.length === 0) return qid;
-	}); //qid not answered by current user
+	}).sort((a, b) => questions[b].timestamp - questions[a].timestamp); //qid not answered by current user
 
-	const sortedAnswers = answeredByUser.sort((a, b) => questions[b].timestamp - questions[a].timestamp);
-	const sortedNotAnswered = notAnswered.sort((a, b) => questions[b].timestamp - questions[a].timestamp);
-	const answeredDetails = sortedAnswers.map((qid) => {
+	const answeredDetails = answeredByUser.map((qid) => {
 		const getValueOf = questions[qid];
 		return {
 			id: qid,
@@ -79,7 +77,7 @@ function mapStateToProps({ questions, users, authedUser }) {
 		};
 	});
 
-	const notAnsweredDetails = sortedNotAnswered.map((qid) => {
+	const notAnsweredDetails = notAnswered.map((qid) => {
 		const getValueOf = questions[qid];
 
 		return {
