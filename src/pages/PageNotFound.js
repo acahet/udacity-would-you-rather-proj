@@ -1,7 +1,7 @@
 import { Button } from '@workday/canvas-kit-react';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Header from './Home';
+import Header from './Header';
 
 export default class PageNotFound extends Component {
 	render() {

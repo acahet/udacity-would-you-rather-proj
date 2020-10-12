@@ -3,7 +3,6 @@ import Cards from './Cards/Cards';
 import { AiOutlineTrophy } from 'react-icons/ai';
 
 import ProgressBar from 'react-bootstrap/ProgressBar';
-import Header from '../pages/Header';
 const Results = ({
 	name,
 	avatarURL,

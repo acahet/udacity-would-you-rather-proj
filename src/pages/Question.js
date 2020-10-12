@@ -89,7 +89,7 @@ class Question extends Component {
 									</div>
 								</div>
 
-								<Button>Submit</Button>
+								<Button disabled={selectedOption === '' ? true : false}>Submit</Button>
 							</form>
 						</Cards>
 					)}
@@ -108,35 +108,25 @@ function mapStateToProps({ questions, users, authedUser }, props) {
 	const answeredByUser = Object.keys(users[authedUser].answers);
 
 	const selectedQuestionInfo = selectedQuestion.map((index) => {
-		const questionsId = questions[index].id;
-		const author = questions[index].author;
-		const optionOne = questions[index].optionOne.text;
-		const optionOneVote = questions[index].optionOne.votes;
-		const optionOneVoteLength = optionOneVote.length;
-		const optionTwo = questions[index].optionTwo.text;
-		const optionTwoVote = questions[index].optionTwo.votes;
-		const optionTwoVoteLength = optionTwoVote.length;
-		const name = users[author].name;
-		const avatarURL = users[author].avatarURL;
-		const totalUser = Object.keys(users).length;
-		const authedUserAnswer = users[author].answers[index];
-		const percentageOptionOne = ((optionOneVoteLength / totalUser) * 100).toFixed(0);
-		const percentageOptionTwo = ((optionTwoVoteLength / totalUser) * 100).toFixed(0);
 		return {
-			questionsId,
-			author,
-			optionOne,
-			optionTwo,
-			optionOneVote,
-			optionTwoVote,
-			optionOneVoteLength,
-			optionTwoVoteLength,
-			percentageOptionOne,
-			percentageOptionTwo,
-			name,
-			avatarURL,
-			totalUser,
-			authedUserAnswer,
+			questionsId: questions[index].id,
+			author: questions[index].author,
+			optionOne: questions[index].optionOne.text,
+			optionTwo: questions[index].optionTwo.text,
+			optionOneVote: questions[index].optionOne.votes,
+			optionTwoVote: questions[index].optionTwo.votes,
+			optionOneVoteLength: questions[index].optionOne.votes.length,
+			optionTwoVoteLength: questions[index].optionTwo.votes.length,
+			percentageOptionOne: ((questions[index].optionOne.votes.length / Object.keys(users).length) * 100).toFixed(
+				0
+			),
+			percentageOptionTwo: ((questions[index].optionTwo.votes.length / Object.keys(users).length) * 100).toFixed(
+				0
+			),
+			name: users[questions[index].author].name,
+			avatarURL: users[questions[index].author].avatarURL,
+			totalUser: Object.keys(users).length,
+			authedUserAnswer: users[questions[index].author].answers[index],
 		};
 	});
 	const filterAnsweredQuestion = answeredByUser.find((qid) => {
