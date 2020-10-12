@@ -19,8 +19,6 @@ class Add extends Component {
 			...prevValue,
 			[name]: value,
 		}));
-		console.log('this.state.optionOne ', this.state.optionOne);
-		console.log('this.state.optionTwo ', this.state.optionTwo);
 	};
 	handleSubmit = (e) => {
 		e.preventDefault();

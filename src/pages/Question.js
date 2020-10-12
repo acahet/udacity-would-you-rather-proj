@@ -23,8 +23,6 @@ class Question extends Component {
 		const { questionsId } = this.props.selectedQuestionInfo[0];
 		const { dispatch } = this.props
 		dispatch(handleSaveAnswer(questionsId, selectedOption))
-		console.log('Option selected to save is: ', this.state.selectedOption);
-		console.log('questionsId selected to save is: ', questionsId);
 	};
 	render() {
 		const { selectedQuestionInfo, filterAnsweredQuestion } = this.props;
