@@ -5,12 +5,14 @@ import NavBar from '../components/NavBar';
 import './style.css';
 import { handleAddQuestion } from '../actions/questions';
 import { Button } from '@workday/canvas-kit-react';
+import Header from './Header';
 
 class Add extends Component {
 	state = {
 		optionOne: '',
 		optionTwo: '',
 		toHome: false,
+		isLoaded: false,
 	};
 
 	handleChange = (e) => {
@@ -24,22 +26,24 @@ class Add extends Component {
 		e.preventDefault();
 		const { optionOne, optionTwo } = this.state;
 		const { dispatch } = this.props;
-		dispatch(handleAddQuestion(optionOne, optionTwo));
-		this.setState(() => ({
-			optionOne: '',
-			optionTwo: '',
-			toHome: true,
-		}));
+		dispatch(handleAddQuestion(optionOne, optionTwo)).then(() =>
+			this.setState(() => ({
+				optionOne: '',
+				optionTwo: '',
+				toHome: !this.state.toHome,
+				isLoaded: !this.state.isLoaded,
+			}))
+		);
 	};
 	render() {
-		const { toHome, optionOne, optionTwo } = this.state;
-		if (toHome === true) {
+		const { toHome, optionOne, optionTwo, isLoaded } = this.state;
+		if (isLoaded === true && toHome === true) {
 			return <Redirect to="/" />;
 		}
 
 		return (
 			<>
-				<NavBar />
+				<Header />
 				<div>
 					<h1>
 						<strong>Create New Question</strong>

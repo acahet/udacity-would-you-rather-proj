@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Button from '@workday/canvas-kit-react-button';
 import CardComponent from './Cards/CardComponent';
+import Header from '../pages/Header';
 class Questions extends Component {
 	state = {
 		selected: 0,
@@ -12,12 +13,15 @@ class Questions extends Component {
 		const { selected } = this.state;
 
 		return notAnsweredDetails.length === 0 ? (
+			
 			<div>
+				<Header />
 				<h1> Congrats !!!</h1>
 				<p> You have answered all questions available</p>
 			</div>
 		) : (
 			<div>
+				<Header />
 				<div
 					style={{
 						margin: '5px',
