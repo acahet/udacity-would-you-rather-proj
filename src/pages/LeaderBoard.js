@@ -6,6 +6,7 @@ import NavBar from '../components/NavBar';
 class LeaderBoard extends Component {
 	render() {
 		const { leaderBoardInfo } = this.props;
+
 		return (
 			<div>
 				<NavBar />
@@ -34,13 +35,7 @@ class LeaderBoard extends Component {
 										Created Questions: <strong>{board.nOfCreatedQuestions}</strong>
 									</p>
 								</div>
-								<div
-									style={{
-										borderRadius: '8px',
-										boxSizing: 'border-box',
-										boxShadow: '0px 4px 8px 0 rgba(0,0,0,0.1)',
-									}}
-								>
+								<div>
 									<div>
 										Score
 										<div>
@@ -74,8 +69,8 @@ function mapStateToProps({ users }) {
 			nOfAnsQuestions,
 			finalScore,
 		};
-	});
-	return { leaderBoardInfo };
+	}).sort((a,b) => b.finalScore - a.finalScore)
+	return { leaderBoardInfo, };
 }
 
 export default connect(mapStateToProps)(LeaderBoard);
