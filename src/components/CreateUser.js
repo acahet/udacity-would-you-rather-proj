@@ -25,14 +25,13 @@ class CreateUser extends Component {
 		const { fName, lName, avatarURL } = this.state;
 		const name = fName + ' ' + lName;
 		const idFormat = (fName + lName).toLowerCase();
-		dispatch(handleSignUpUser(name, idFormat, avatarURL))
-			.then(() =>
-				this.setState(() => ({
-					optionOne: '',
-					optionTwo: '',
-					toHome: !this.state.toHome,
-				}))
-			)
+		dispatch(handleSignUpUser(name, idFormat, avatarURL)).then(() =>
+			this.setState(() => ({
+				optionOne: '',
+				optionTwo: '',
+				toHome: !this.state.toHome,
+			}))
+		);
 	};
 	render() {
 		const { fName, lName, avatarURL, toHome } = this.state;

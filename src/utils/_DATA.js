@@ -211,6 +211,8 @@ export function _signUpUser({ id, name, avatarURL }) {
 					id: id,
 					name: name,
 					avatarURL: avatarURL,
+					questions: [],
+					answers: {},
 				},
 			};
 			res();
