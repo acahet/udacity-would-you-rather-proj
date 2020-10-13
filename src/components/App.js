@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+
+import { LoadingDots } from '@workday/canvas-kit-react';
+
 import { handleInitialData } from '../actions/shared';
-import { LoadingDots } from '@workday/canvas-kit-react-loading-animation';
+
 import '../App.css';
-import Questions from '../components/QuestionComponent';
+import Question from './Questions/Question/Question';
+import Questions from './Questions/Questions';
+
 import LeaderBoard from '../pages/LeaderBoard';
 import Login from '../pages/Login';
 import Add from '../pages/AddQuestion';
-import Question from '../pages/Question';
 import PageNotFound from '../pages/PageNotFound';
+import CreateUser from './CreateUser';
 
 function PrivateRoute({ component: Component, authedUser, ...rest }) {
 	return (
@@ -38,11 +43,11 @@ class App extends Component {
 
 	render() {
 		const { authedUser } = this.props;
-		console.log('loading status is: ', this.props);
+		const { isLoaded } = this.state;
 		return (
 			<Router>
-				{!this.state.isLoaded ? (
-					<div style={{ display: 'flex', justifyContent: 'center', padding: '50%' }}>
+				{!isLoaded ? (
+					<div style={{ display: 'grid', justifyContent: 'center', paddingTop: '50vh' }}>
 						<LoadingDots />
 					</div>
 				) : (
@@ -51,11 +56,14 @@ class App extends Component {
 							<PrivateRoute path="/" authedUser={authedUser} exact component={Questions} />
 							<PrivateRoute path="/add" authedUser={authedUser} exact component={Add} />
 							<PrivateRoute path="/leaderboard" authedUser={authedUser} exact component={LeaderBoard} />
-							<PrivateRoute path="/questions/:question_id" authedUser={authedUser} exact component={Question} />
+							<PrivateRoute
+								path="/questions/:question_id"
+								authedUser={authedUser}
+								exact
+								component={Question}
+							/>
 							<Route path="/login" exact component={Login} />
-							{/* <Route path="/login" exact render={() => {
-								<Login isLoaded={this.state.isLoaded} />
-							}} /> */}
+							<Route path="/signup" exact component={CreateUser} />
 							<Route component={PageNotFound} />
 						</Switch>
 					</div>
@@ -64,9 +72,8 @@ class App extends Component {
 		);
 	}
 }
-function mapStateToProps({ authedUser, users }) {
-	console.log('mapStateToProps in app.js ', users);
-	return { loading: authedUser === null, authedUser, users };
+function mapStateToProps({ authedUser }) {
+	return { authedUser };
 }
 
 export default connect(mapStateToProps, { handleInitialData })(App);

@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import Cards from './Cards';
 import { Button } from '@workday/canvas-kit-react-button';
-import { Link } from 'react-router-dom';
 
 export const CardComponent = ({ mapDetails }) => {
 	return (
@@ -20,7 +21,7 @@ export const CardComponent = ({ mapDetails }) => {
 						</p>
 						<div>
 							<Button
-								style={{ textDecoration: 'none', marginTop: '30px', marginRight: '5px'}}
+								style={{ textDecoration: 'none', marginTop: '30px', marginRight: '5px' }}
 								as={Link}
 								to={`/questions/question_${details.id}`}
 							>

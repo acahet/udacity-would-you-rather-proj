@@ -1,8 +1,9 @@
 import React from 'react';
-import Cards from './Cards/Cards';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 import { AiOutlineTrophy } from 'react-icons/ai';
 
-import ProgressBar from 'react-bootstrap/ProgressBar';
+import Cards from './Cards/Cards';
+
 const Results = ({
 	name,
 	avatarURL,
@@ -26,7 +27,6 @@ const Results = ({
 
 	return (
 		<>
-			{/* <Header /> */}
 			<div style={{ display: 'inline-block' }}>
 				<Cards
 					style={{ display: 'flex', alignItems: 'center' }}

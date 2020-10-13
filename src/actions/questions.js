@@ -1,4 +1,4 @@
-import { hideLoading, showLoading } from 'react-redux-loading';
+// import { hideLoading, showLoading } from 'react-redux-loading';
 import { saveQuestion, saveQuestionAnswer } from '../utils/api';
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
@@ -29,7 +29,7 @@ function saveAnswer(authedUser, qid, answer) {
 export function handleSaveAnswer(qid, answer) {
 	return (dispatch, getState) => {
 		const { authedUser } = getState();
-		dispatch(showLoading());
+		// dispatch(showLoading());
 
 		return saveQuestionAnswer({
 			answer: answer,
@@ -39,13 +39,13 @@ export function handleSaveAnswer(qid, answer) {
 			.then(() => {
 				dispatch(saveAnswer(authedUser, qid, answer));
 			})
-			.then(() => dispatch(hideLoading()));
+			// .then(() => dispatch(hideLoading()));
 	};
 }
 export function handleAddQuestion(optionOne, optionTwo) {
 	return (dispatch, getState) => {
 		const { authedUser } = getState();
-		dispatch(showLoading());
+		// dispatch(showLoading());
 
 		return saveQuestion({
 			optionOneText: optionOne,
@@ -56,6 +56,6 @@ export function handleAddQuestion(optionOne, optionTwo) {
 				console.log('saveQuestion ', saveQuestion);
 				dispatch(addQuestion(question));
 			})
-			.then(() => dispatch(hideLoading()));
+			// .then(() => dispatch(hideLoading()));
 	};
 }

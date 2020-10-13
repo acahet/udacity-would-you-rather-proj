@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import { Button } from '@workday/canvas-kit-react-button';
 import { ActionBar } from '@workday/canvas-kit-react-action-bar';
-import { Link } from 'react-router-dom';
+
 const NavBar = () => {
 	return (
 		<ActionBar

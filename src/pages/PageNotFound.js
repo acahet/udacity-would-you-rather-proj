@@ -1,6 +1,7 @@
-import { Button, PageHeader } from '@workday/canvas-kit-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import { Button, PageHeader } from '@workday/canvas-kit-react';
 
 const PageNotFound = () => {
 	return (
