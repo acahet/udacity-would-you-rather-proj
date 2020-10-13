@@ -1,148 +1,156 @@
-# Would You Rather Project
+@Author: Anderson Cahet
+
+# Would You Rather Project - Udacity Course
+
 Clone repository and run NPM install and NPM start
 
 **Landing Page**:
-- Dropdown with seeded users
-- Login btn - disabled until a user is selected
-- Sign-up btn - allows new users to be added
-  * avatar image needs to be an actual image URL
-  * on sign-up user is taken back to landing page
+
+-   Dropdown with seeded users
+-   Login btn - disabled until a user is selected
+-   Sign-up btn - allows new users to be added
+    -   avatar image needs to be an actual image URL
+    -   on sign-up user is taken back to landing page
 
 **On Login**
-- user lands on home where by default the unanswered questions will be displayed
+
+-   user lands on home where by default the unanswered questions will be displayed
 
 **Unanswered Questions**
-- on View Poll Click 
-  * user is able to select an option
-  * no answer select, submit is disabled
-  * on submission results is displayed with a trophy on the question selected by user
-- all unanswered question answered
-  * message is displayed to user
+
+-   on View Poll Click
+    -   user is able to select an option
+    -   no answer select, submit is disabled
+    -   on submission results is displayed with a trophy on the question selected by user
+-   all unanswered question answered
+    -   message is displayed to user
 
 **Answered Questions**
-- case empty
-  * message displayed - can be seen with a newly created user
-- answered questions displayed
-- on View Poll Click 
-  * results is displayed as when a vote is placed
+
+-   case empty
+    -   message displayed - can be seen with a newly created user
+-   answered questions displayed
+-   on View Poll Click
+    -   results is displayed as when a vote is placed
 
 **New Question**
-- inputs for optionOne and optionTwo , plus a disabled submit btn
-  * validation:
-    * same questions not allowed - submit btn disabled
-    * both fields or one empty - submit btn disabled
-  * on submission
-    * user is taken to Unanswered view and created question is displayed
+
+-   inputs for optionOne and optionTwo , plus a disabled submit btn
+    -   validation:
+        -   same questions not allowed - submit btn disabled
+        -   both fields or one empty - submit btn disabled
+    -   on submission
+        -   user is taken to Unanswered view and created question is displayed
 
 **Leader Board**
-- displays the score based on total of answered + created questions
-  
+
+-   displays the score based on total of answered + created questions
 
 **Header**
-- has a label with greeting user by name and a logout btn
+
+-   has a label with greeting user by name and a logout btn
 
 **Logout**
-- sets authenticate user to null and returns to login page
+
+-   sets authenticate user to null and returns to login page
 
 **Page Not Found**
-- user tries to access an non-existent URL page displays with a button to return to login page
+
+-   user tries to access an non-existent URL page displays with a button to return to login page
 
 **Access through url**
-- user is taken to login page even if the url is correct
-   
+
+-   user is taken to login page even if the url is correct
 
 References:
 Private Routes
 https://ui.dev/react-router-v4-protected-routes-authentication/
 
-
-
-
 ## Data
 
 There are two types of objects stored in our database:
 
-* Users
-* Questions
+-   Users
+-   Questions
 
 ### Users
 
 Users include:
 
-| Attribute    | Type             | Description           |
-|-----------------|------------------|-------------------         |
-| id                 | String           | The user’s unique identifier |
-| name          | String           | The user’s first name  and last name     |
-| avatarURL  | String           | The path to the image file |
-| questions | Array | A list of ids of the polling questions this user created|
-| answers      | Object         |  The object's keys are the ids of each question this user answered. The value of each key is the answer the user selected. It can be either `'optionOne'` or `'optionTwo'` since each question has two options.
+| Attribute | Type   | Description                                                                                                                                                                                                    |
+| --------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id        | String | The user’s unique identifier                                                                                                                                                                                   |
+| name      | String | The user’s first name and last name                                                                                                                                                                            |
+| avatarURL | String | The path to the image file                                                                                                                                                                                     |
+| questions | Array  | A list of ids of the polling questions this user created                                                                                                                                                       |
+| answers   | Object | The object's keys are the ids of each question this user answered. The value of each key is the answer the user selected. It can be either `'optionOne'` or `'optionTwo'` since each question has two options. |
 
 ### Questions
 
 Questions include:
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| id                  | String | The question’s unique identifier |
-| author        | String | The author’s unique identifier |
-| timestamp | String | The time when the question was created|
-| optionOne | Object | The first voting option|
-| optionTwo | Object | The second voting option|
+| Attribute | Type   | Description                            |
+| --------- | ------ | -------------------------------------- |
+| id        | String | The question’s unique identifier       |
+| author    | String | The author’s unique identifier         |
+| timestamp | String | The time when the question was created |
+| optionOne | Object | The first voting option                |
+| optionTwo | Object | The second voting option               |
 
 ### Voting Options
 
 Voting options are attached to questions. They include:
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| votes             | Array | A list that contains the id of each user who voted for that option|
-| text                | String | The text of the option |
+| Attribute | Type   | Description                                                        |
+| --------- | ------ | ------------------------------------------------------------------ |
+| votes     | Array  | A list that contains the id of each user who voted for that option |
+| text      | String | The text of the option                                             |
 
 Your code will talk to the database via 4 methods:
 
-* `_getUsers()`
-* `_getQuestions()`
-* `_saveQuestion(question)`
-* `_saveQuestionAnswer(object)`
+-   `_getUsers()`
+-   `_getQuestions()`
+-   `_saveQuestion(question)`
+-   `_saveQuestionAnswer(object)`
 
-1) `_getUsers()` Method
+1. `_getUsers()` Method
 
-*Description*: Get all of the existing users from the database.  
-*Return Value*: Object where the key is the user’s id and the value is the user object.
+_Description_: Get all of the existing users from the database.  
+_Return Value_: Object where the key is the user’s id and the value is the user object.
 
-2) `_getQuestions()` Method
+2. `_getQuestions()` Method
 
-*Description*: Get all of the existing questions from the database.  
-*Return Value*: Object where the key is the question’s id and the value is the question object.
+_Description_: Get all of the existing questions from the database.  
+_Return Value_: Object where the key is the question’s id and the value is the question object.
 
-3) `_saveQuestion(question)` Method
+3. `_saveQuestion(question)` Method
 
-*Description*: Save the polling question in the database.  
-*Parameters*:  Object that includes the following properties: `author`, `optionOneText`, and `optionTwoText`. More details about these properties:
+_Description_: Save the polling question in the database.  
+_Parameters_: Object that includes the following properties: `author`, `optionOneText`, and `optionTwoText`. More details about these properties:
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| author | String | The id of the user who posted the question|
-| optionOneText| String | The text of the first option |
-| optionTwoText | String | The text of the second option |
+| Attribute     | Type   | Description                                |
+| ------------- | ------ | ------------------------------------------ |
+| author        | String | The id of the user who posted the question |
+| optionOneText | String | The text of the first option               |
+| optionTwoText | String | The text of the second option              |
 
-*Return Value*:  An object that has the following properties: `id`, `author`, `optionOne`, `optionTwo`, `timestamp`. More details about these properties:
+_Return Value_: An object that has the following properties: `id`, `author`, `optionOne`, `optionTwo`, `timestamp`. More details about these properties:
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| id | String | The id of the question that was posted|
-| author | String | The id of the user who posted the question|
-| optionOne | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
-| optionTwo | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
-|timestamp|String | The time when the question was created|
+| Attribute | Type   | Description                                                                                                                  |
+| --------- | ------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| id        | String | The id of the question that was posted                                                                                       |
+| author    | String | The id of the user who posted the question                                                                                   |
+| optionOne | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option |
+| optionTwo | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option |
+| timestamp | String | The time when the question was created                                                                                       |
 
-4) `_saveQuestionAnswer(object)` Method
+4. `_saveQuestionAnswer(object)` Method
 
-*Description*: Save the answer to a particular polling question in the database.
-*Parameters*: Object that contains the following properties: `authedUser`, `qid`, and `answer`. More details about these properties:
+_Description_: Save the answer to a particular polling question in the database.
+_Parameters_: Object that contains the following properties: `authedUser`, `qid`, and `answer`. More details about these properties:
 
-| Attribute | Type | Description |
-|-----------------|------------------|-------------------|
-| authedUser | String | The id of the user who answered the question|
-| qid | String | The id of the question that was answered|
-| answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
+| Attribute  | Type   | Description                                                                             |
+| ---------- | ------ | --------------------------------------------------------------------------------------- |
+| authedUser | String | The id of the user who answered the question                                            |
+| qid        | String | The id of the question that was answered                                                |
+| answer     | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"` |
