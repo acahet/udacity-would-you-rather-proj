@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import Card from '@workday/canvas-kit-react-card';
 import { Avatar } from '@workday/canvas-kit-react-avatar';
 export default class Cards extends Component {

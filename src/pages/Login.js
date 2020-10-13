@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { setAuthedUser } from '../actions/authedUser';
-import Select, { SelectOption } from '@workday/canvas-kit-react-select';
-import FormField from '@workday/canvas-kit-react-form-field';
+import { Link } from 'react-router-dom';
+
 import Card from '@workday/canvas-kit-react-card';
 import { Button } from '@workday/canvas-kit-react-button';
 import { PageHeader } from '@workday/canvas-kit-react';
+import Select, { SelectOption } from '@workday/canvas-kit-react-select';
+import FormField from '@workday/canvas-kit-react-form-field';
+
+import { setAuthedUser } from '../actions/authedUser';
+
 class Login extends Component {
 	state = {
 		isLoggedWith: '',
@@ -41,25 +45,38 @@ class Login extends Component {
 		) : (
 			<>
 				<PageHeader title="Would You Rather Game" />
-				<Card heading="Login" style={{ margin: '25px', padding: '10px' }}>
-					<FormField onSubmit={this.handleSubmit}>
-						<Select name="login" value={isLoggedWith} onChange={(e) => this.handleChange(e)}>
-							<SelectOption value="select" label="Select User" />
-							{users.map((user) => {
-								return <SelectOption value={user.id} key={user.id} label={user.name} />;
-							})}
-						</Select>
-						<Button
-							to="/home"
-							type="submit"
-							onClick={(e) => this.handleSubmit(e)}
-							style={{ margin: '5px' }}
-							disabled={isLoggedWith === '' || isLoggedWith === 'select' ? true : false}
-						>
-							Login
-						</Button>
-					</FormField>
-				</Card>
+				<div>
+					<Card heading="Login" style={{ margin: '25px', padding: '10px' }}>
+						<FormField onSubmit={this.handleSubmit}>
+							<Select name="login" value={isLoggedWith} onChange={(e) => this.handleChange(e)}>
+								<SelectOption value="select" label="Select User" />
+								{users.map((user) => {
+									return <SelectOption value={user.id} key={user.id} label={user.name} />;
+								})}
+							</Select>
+							<div>
+								<Button
+									to="/home"
+									type="submit"
+									style={{ width: '250px', marginTop: '5px', textDecoration: 'none' }}
+									onClick={(e) => this.handleSubmit(e)}
+									disabled={isLoggedWith === '' || isLoggedWith === 'select' ? true : false}
+								>
+									Login
+								</Button>
+							</div>
+							<div>
+								<Button
+									to="/signup"
+									style={{ width: '250px', marginTop: '5px', textDecoration: 'none' }}
+									as={Link}
+								>
+									SignUp
+								</Button>
+							</div>
+						</FormField>
+					</Card>
+				</div>
 			</>
 		);
 	}

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './style.css';
-import { handleAddQuestion } from '../actions/questions';
 import { Button } from '@workday/canvas-kit-react';
+
+import { handleAddQuestion } from '../actions/questions';
+
 import Header from './Header';
 
 class Add extends Component {
@@ -53,7 +54,20 @@ class Add extends Component {
 						{' '}
 						<strong>Would You Rather...</strong>{' '}
 					</p>
+
 					<div className="container">
+						<h2
+							style={{
+								color: '#f39233',
+								display:
+									(optionOne.toLowerCase() === optionTwo.toLowerCase() && optionOne.length > 0) ||
+									(optionOne.toLowerCase() === optionTwo.toLowerCase() && optionTwo.length > 0)
+										? ''
+										: 'none',
+							}}
+						>
+							<strong>Questions must be different </strong>
+						</h2>
 						<form onSubmit={this.handleSubmit}>
 							<input
 								className="add-question-input"
@@ -62,6 +76,7 @@ class Add extends Component {
 								value={optionOne}
 								placeholder="Enter Option One here"
 							/>
+
 							<h4>
 								<strong> ...OR... </strong>
 							</h4>
@@ -73,7 +88,15 @@ class Add extends Component {
 								placeholder="Enter Option Two here"
 							/>
 
-							<Button disabled={optionOne.length === 0 || optionTwo.length === 0 ? true : false}>
+							<Button
+								disabled={
+									optionOne.length === 0 ||
+									optionTwo.length === 0 ||
+									optionOne.toLowerCase() === optionTwo.toLowerCase()
+										? true
+										: false
+								}
+							>
 								Submit Question
 							</Button>
 						</form>

@@ -1,11 +1,14 @@
-import { Button } from '@workday/canvas-kit-react';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { handleSaveAnswer } from '../actions/questions';
-import Cards from '../components/Cards/Cards';
-import Results from '../components/ResultsComponent';
-import Header from './Header';
+
+import { Button } from '@workday/canvas-kit-react';
+
+import { handleSaveAnswer } from '../../../actions/questions';
+
+import Cards from '../../Cards/Cards';
+import Results from '../../ResultsComponent';
+import Header from '../../../pages/Header';
 
 class Question extends Component {
 	state = {

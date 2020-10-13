@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Button from '@workday/canvas-kit-react-button';
-import CardComponent from './Cards/CardComponent';
-import Header from '../pages/Header';
+
+import CardComponent from '../Cards/CardComponent';
+import Header from '../../pages/Header';
+
 class Questions extends Component {
 	state = {
 		selected: 0,
@@ -45,7 +47,23 @@ class Questions extends Component {
 					</div>
 					<div style={{ display: 'flex', justifyContent: 'center', paddingLeft: '40px' }}>
 						{selected === 0 && <CardComponent mapDetails={notAnsweredDetails} />}
-						{selected === 1 && <CardComponent mapDetails={answeredDetails} />}
+						{answeredDetails.length === 0
+							? selected === 1 && (
+									<div style={{ textAlign: 'center', marginTop: '50px' }}>
+										<h1>
+											{' '}
+											<strong>Oooops !!!</strong>
+										</h1>
+										<p>
+											{' '}
+											<strong>
+												You might be a new user, try answering few questions to gain some place
+												in the leaderboard
+											</strong>
+										</p>
+									</div>
+							  )
+							: selected === 1 && <CardComponent mapDetails={answeredDetails} />}
 					</div>
 				</div>
 			</div>
@@ -60,6 +78,7 @@ function mapStateToProps({ questions, users, authedUser }) {
 		.filter((qid) => {
 			const remainQuestions = answeredByUser.filter((answeredQid) => answeredQid === qid);
 			if (remainQuestions === undefined || remainQuestions.length === 0) return qid;
+			return false;
 		})
 		.sort((a, b) => questions[b].timestamp - questions[a].timestamp); //qid not answered by current user
 
