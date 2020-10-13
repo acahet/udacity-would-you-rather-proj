@@ -1,8 +1,62 @@
 # Would You Rather Project
+Clone repository and run NPM install
+
+**Landing Page**:
+- Dropdown with seeded users
+- Login btn - disabled until a user is selected
+- Signup btn - allows new users to be added
+  * avatar image needs to be an actual image URL
+  * on signup user is taken back to landing page
+
+**On Login**
+- user lands on home where by default the unanswered questions will be displayed
+
+**Unanswered Questions**
+- on View Poll Click 
+  * user is able to select an option
+  * no answer select, submit is disabled
+  * on submission results is displayed with a trophy on the question selected by user
+- all unanswered question answered
+  * message is displayed to user
+
+**Answered Questions**
+- case empty
+  * message displayed - can be seen with a newly created user
+- answered questions displayed
+- on View Poll Click 
+  * results is displayed as when a vote is placed
+
+**New Question**
+- inputs for optionOne and optionTwo , plus a disabled submit btn
+  * validation:
+    * same questions not allowed - submit btn disabled
+    * both fields or one empty - submit btn disabled
+  * on submission
+    * user is taken to Unanswered view and created question is displayed
+
+**Leader Board**
+- displays the score based on total of answered + created questions
+  
+
+**Header**
+- has a label with greeting user by name and a logout btn
+
+**Logout**
+- sets authenticate user to null and returns to login page
+
+**Page Not Found**
+- user tries to access an non-existent URL page displays with a button to return to login page
+
+**Access through url**
+- user is taken to login page even if the url is correct
+   
 
 References:
 Private Routes
 https://ui.dev/react-router-v4-protected-routes-authentication/
+
+
+
 
 ## Data
 
