@@ -38,10 +38,17 @@ class Login extends Component {
 	};
 
 	render() {
+		//http://localhost:3000/questions/question_t7kjwnhmrxwbtu5uiuqsg
+		console.log('this.props.location ', this.props.location);
 		const { isLoggedWith, redirect } = this.state;
 		const { users } = this.props;
 		return redirect === true ? (
-			<Redirect to="/" />
+			<Redirect
+				to={{
+					pathname: this.props.location.state === undefined ? '/': this.props.location.state.from.pathname,
+					state: { stateName: true },
+				}}
+			/>
 		) : (
 			<>
 				<PageHeader title="Would You Rather Game" />
@@ -82,13 +89,13 @@ class Login extends Component {
 	}
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users }, props) {
 	const allUsers = Object.keys(users).map((index) => ({
 		id: users[index].id,
 		name: users[index].name,
 		avatarUrl: users[index].avatarURL,
 	}));
-
+	console.log('mapStateToProps ', props);
 	return {
 		users: allUsers,
 	};
