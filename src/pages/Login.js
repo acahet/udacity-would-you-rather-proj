@@ -39,14 +39,14 @@ class Login extends Component {
 
 	render() {
 		//http://localhost:3000/questions/question_t7kjwnhmrxwbtu5uiuqsg
-		console.log('this.props.location ', this.props.location);
+		// console.log('this.props.location ', this.props.location);
 		const { isLoggedWith, redirect } = this.state;
 		const { users } = this.props;
 		return redirect === true ? (
 			<Redirect
 				to={{
 					pathname: this.props.location.state === undefined ? '/': this.props.location.state.from.pathname,
-					state: { stateName: true },
+					// state: { stateName: true },
 				}}
 			/>
 		) : (
@@ -95,7 +95,7 @@ function mapStateToProps({ users }, props) {
 		name: users[index].name,
 		avatarUrl: users[index].avatarURL,
 	}));
-	console.log('mapStateToProps ', props);
+	// console.log('mapStateToProps ', props);
 	return {
 		users: allUsers,
 	};
