@@ -9,7 +9,7 @@ import { handleSaveAnswer } from '../../../actions/questions';
 import Cards from '../../Cards/Cards';
 import Results from '../../ResultsComponent';
 import Header from '../../../pages/Header';
-
+import PageNotFound from '../../../pages/PageNotFound';
 class Question extends Component {
 	state = {
 		selectedOption: '',
@@ -29,43 +29,34 @@ class Question extends Component {
 	};
 	render() {
 		const { selectedQuestionInfo, filterAnsweredQuestion } = this.props;
-		const {
-			optionOne,
-			optionTwo,
-			name,
-			avatarURL,
-			questionsId,
-			optionOneVoteLength,
-			optionTwoVoteLength,
-			percentageOptionOne,
-			percentageOptionTwo,
-			totalUser,
-			authedUserAnswer,
-		} = selectedQuestionInfo[0];
+		
 		const { selectedOption } = this.state;
-		return (
+		
+		return selectedQuestionInfo[0] === undefined ? (
+			<PageNotFound />
+		) : (
 			<>
 				<Header />
 				<div style={{ display: 'flex', justifyContent: 'center' }}>
-					{filterAnsweredQuestion === questionsId ? (
+					{filterAnsweredQuestion === selectedQuestionInfo[0].questionsId ? (
 						<Results
-							name={name}
-							avatarURL={avatarURL}
-							optionOneQuestion={optionOne}
-							optionTwoQuestion={optionTwo}
-							totalVotesOptionOne={optionOneVoteLength}
-							totalVotesOptionTwo={optionTwoVoteLength}
-							totalUsers={totalUser}
-							votesPercentageOptionOne={percentageOptionOne}
-							votesPercentageOptionTwo={percentageOptionTwo}
-							selectedAnswer={authedUserAnswer}
+							name={selectedQuestionInfo[0].name}
+							avatarURL={selectedQuestionInfo[0].avatarURL}
+							optionOneQuestion={selectedQuestionInfo[0].optionOne}
+							optionTwoQuestion={selectedQuestionInfo[0].optionTwo}
+							totalVotesOptionOne={selectedQuestionInfo[0].optionOneVoteLength}
+							totalVotesOptionTwo={selectedQuestionInfo[0].optionTwoVoteLength}
+							totalUsers={selectedQuestionInfo[0].totalUser}
+							votesPercentageOptionOne={selectedQuestionInfo[0].percentageOptionOne}
+							votesPercentageOptionTwo={selectedQuestionInfo[0].percentageOptionTwo}
+							selectedAnswer={selectedQuestionInfo[0].authedUserAnswer}
 						/>
 					) : (
 						<Cards
-							src={avatarURL}
+							src={selectedQuestionInfo[0].avatarURL}
 							style={{ display: 'flex' }}
 							title="Would You Rather"
-							heading={`${name} asks:`}
+							heading={`${selectedQuestionInfo[0].name} asks:`}
 						>
 							<form onSubmit={this.handleSubmit}>
 								<div onChange={this.handleChange}>
@@ -77,7 +68,7 @@ class Question extends Component {
 											checked={selectedOption === 'optionOne'}
 											onChange={this.handleChange}
 										/>
-										<p>{optionOne}</p>
+										<p>{selectedQuestionInfo[0].optionOne}</p>
 									</div>
 
 									<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -88,7 +79,7 @@ class Question extends Component {
 											checked={selectedOption === 'optionTwo'}
 											onChange={this.handleChange}
 										/>
-										<p>{optionTwo}</p>
+										<p>{selectedQuestionInfo[0].optionTwo}</p>
 									</div>
 								</div>
 
@@ -134,7 +125,8 @@ function mapStateToProps({ questions, users, authedUser }, props) {
 		};
 	});
 	const filterAnsweredQuestion = answeredByUser.find((qid) => {
-		return qid === selectedQuestionInfo[0].questionsId;
+
+		return selectedQuestionInfo[0] === undefined ? null : qid === selectedQuestionInfo[0].questionsId;
 	});
 	return {
 		selectedQuestionInfo,
