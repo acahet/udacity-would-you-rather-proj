@@ -45,7 +45,7 @@ class Login extends Component {
 		return redirect === true ? (
 			<Redirect
 				to={{
-					pathname: this.props.location.state === undefined ? '/': this.props.location.state.from.pathname,
+					pathname: this.props.location.state === undefined ? '/' : this.props.location.state.from.pathname,
 					// state: { stateName: true },
 				}}
 			/>

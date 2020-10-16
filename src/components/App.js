@@ -64,7 +64,7 @@ class App extends Component {
 							/>
 							<Route path="/login" exact component={Login} />
 							<Route path="/signup" exact component={CreateUser} />
-							<Route component={PageNotFound} />
+							<Route authedUser={authedUser} component={PageNotFound} />
 						</Switch>
 					</div>
 				)}

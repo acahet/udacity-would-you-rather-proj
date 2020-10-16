@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Button, PageHeader } from '@workday/canvas-kit-react';
-
+import { Button } from '@workday/canvas-kit-react';
+import Header from '../pages/Header';
 const PageNotFound = () => {
 	return (
 		<div>
-			<PageHeader title="Would You Rather Game" />
+			<Header />
 			<h1>
 				<strong>PageNotFound</strong>
 			</h1>
